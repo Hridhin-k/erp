@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { Header } from "@/components/layout/Header";
-import { useAuth } from "@/contexts/AuthContext";
+import { useRole } from "@/lib/hooks/useRole";
 import { ActionBar } from "@/components/ui/ActionBar";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
@@ -89,9 +89,7 @@ interface LeadsClientPageProps {
 }
 
 export function LeadsClientPage({ leads, kpis }: LeadsClientPageProps) {
-  const { user } = useAuth();
-  const isTeamLead = user?.role === "team-lead";
-  const isSalesAssociate = user?.role === "sales-associate";
+  const { user, isTeamLead, isSalesAssociate } = useRole();
   const calendarAnchorRef = useRef<HTMLDivElement>(null);
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [dateFilter, setDateFilter] = useState("Today");

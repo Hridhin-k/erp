@@ -36,7 +36,7 @@ import {
 } from "recharts";
 import Image from "next/image";
 import { Header } from "@/components/layout/Header";
-import { useAuth } from "@/contexts/AuthContext";
+import { useRole } from "@/lib/hooks/useRole";
 import { ActionBar } from "@/components/ui/ActionBar";
 import { Card } from "@/components/ui/Card";
 import {
@@ -262,14 +262,8 @@ export function DashboardClientPage({
   teamPerformance,
   leadSources,
 }: DashboardClientPageProps) {
-  const { user } = useAuth();
-  const isTeamLead = user?.role === "team-lead";
-  const isSalesAssociate = user?.role === "sales-associate";
-  const displayName = isTeamLead
-    ? "Team Lead"
-    : isSalesAssociate
-      ? "Sales Associate"
-      : user?.name ?? "User";
+  const { isTeamLead, isSalesAssociate, roleDisplayName } = useRole();
+  const displayName = roleDisplayName;
   const calendarAnchorRef = useRef<HTMLDivElement>(null);
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [addLeadOpen, setAddLeadOpen] = useState(false);

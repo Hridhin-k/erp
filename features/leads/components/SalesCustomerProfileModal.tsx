@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import {
   Calendar,
   Crown,
@@ -17,6 +17,7 @@ import {
   Briefcase,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { BaseModal } from "@/components/ui/BaseModal";
 
 export interface SalesCustomerProfileModalProps {
   open: boolean;
@@ -36,12 +37,13 @@ export function SalesCustomerProfileModal({
   onOpenChange,
   lead,
 }: SalesCustomerProfileModalProps) {
-  const dialogRef = useRef<HTMLDivElement>(null);
   const [isEditing, setIsEditing] = useState(false);
-  const [fullName, setFullName] = useState("");
-  const [status, setStatus] = useState("");
-  const [occupation, setOccupation] = useState("");
-  const [nationality, setNationality] = useState("");
+  const [draft, setDraft] = useState<{
+    fullName: string;
+    status: string;
+    occupation: string;
+    nationality: string;
+  } | null>(null);
 
   const displayLead = lead ?? {
     id: "L001",
@@ -55,50 +57,27 @@ export function SalesCustomerProfileModal({
   const handleClose = useCallback(() => onOpenChange(false), [onOpenChange]);
   const handleCancelEdit = useCallback(() => {
     setIsEditing(false);
-    setFullName(displayLead.name);
-    setStatus(displayLead.status);
-    setOccupation("Business Consultant");
-    setNationality("USA");
-  }, [displayLead.name, displayLead.status]);
+    setDraft(null);
+  }, []);
   const handleSaveChanges = useCallback(() => {
     setIsEditing(false);
+    setDraft(null);
   }, []);
 
-  useEffect(() => {
-    if (!open) return;
-    dialogRef.current?.focus();
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") handleClose();
-    };
-    document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, [open, handleClose]);
-
-  useEffect(() => {
-    if (!open) return;
-    setFullName(displayLead.name);
-    setStatus(displayLead.status);
-    setOccupation("Business Consultant");
-    setNationality("USA");
-  }, [open, displayLead.name, displayLead.status]);
-
-  if (!open) return null;
+  const fullName = draft?.fullName ?? displayLead.name;
+  const status = draft?.status ?? displayLead.status;
+  const occupation = draft?.occupation ?? "Business Consultant";
+  const nationality = draft?.nationality ?? "USA";
 
   return (
-    <>
-      <div className="fixed inset-0 z-40 bg-black/60" onClick={handleClose} aria-hidden />
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div
-          ref={dialogRef}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Customer Profile"
-          tabIndex={-1}
-          className="flex h-[92vh] w-full max-w-[760px] flex-col overflow-hidden border border-[var(--border-dark)] bg-white"
-          data-node-id="150:483"
-          onClick={(event) => event.stopPropagation()}
-        >
+    <BaseModal
+      open={open}
+      onOpenChange={onOpenChange}
+      ariaLabel="Customer Profile"
+      wrapperClassName="bg-black/60 p-4"
+      className="flex h-[92vh] max-w-[760px] flex-col overflow-hidden border border-[var(--border-dark)] bg-white"
+      dataNodeId="150:483"
+    >
           <div className="flex items-center justify-between border-b border-[var(--border-dark)] px-6 py-4">
             <div className="flex items-center gap-3">
               <button
@@ -137,7 +116,15 @@ export function SalesCustomerProfileModal({
                 variant="outline"
                 size="sm"
                 className="h-9 rounded-md px-3"
-                onClick={() => setIsEditing(true)}
+                onClick={() => {
+                  setDraft({
+                    fullName: displayLead.name,
+                    status: displayLead.status,
+                    occupation: "Business Consultant",
+                    nationality: "USA",
+                  });
+                  setIsEditing(true);
+                }}
               >
                 Edit Profile
               </Button>
@@ -159,7 +146,14 @@ export function SalesCustomerProfileModal({
                       <label className="text-[10px] font-bold uppercase text-[var(--muted)]">Full Name</label>
                       <input
                         value={fullName}
-                        onChange={(event) => setFullName(event.target.value)}
+                        onChange={(event) =>
+                          setDraft((prev) => ({
+                            fullName: event.target.value,
+                            status: prev?.status ?? displayLead.status,
+                            occupation: prev?.occupation ?? "Business Consultant",
+                            nationality: prev?.nationality ?? "USA",
+                          }))
+                        }
                         className="h-9 w-full rounded-xl border border-[var(--border-dark)] bg-[#d3d3d3] px-3 text-sm text-[var(--primary)] focus:outline-none"
                       />
                     </div>
@@ -167,7 +161,14 @@ export function SalesCustomerProfileModal({
                       <label className="text-[10px] font-bold uppercase text-[var(--muted)]">Status</label>
                       <input
                         value={status}
-                        onChange={(event) => setStatus(event.target.value)}
+                        onChange={(event) =>
+                          setDraft((prev) => ({
+                            fullName: prev?.fullName ?? displayLead.name,
+                            status: event.target.value,
+                            occupation: prev?.occupation ?? "Business Consultant",
+                            nationality: prev?.nationality ?? "USA",
+                          }))
+                        }
                         className="h-9 w-full rounded-xl border border-[var(--border-dark)] bg-[#d3d3d3] px-3 text-sm text-[var(--primary)] focus:outline-none"
                       />
                     </div>
@@ -175,7 +176,14 @@ export function SalesCustomerProfileModal({
                       <label className="text-[10px] font-bold uppercase text-[var(--muted)]">Occupation</label>
                       <input
                         value={occupation}
-                        onChange={(event) => setOccupation(event.target.value)}
+                        onChange={(event) =>
+                          setDraft((prev) => ({
+                            fullName: prev?.fullName ?? displayLead.name,
+                            status: prev?.status ?? displayLead.status,
+                            occupation: event.target.value,
+                            nationality: prev?.nationality ?? "USA",
+                          }))
+                        }
                         className="h-9 w-full rounded-xl border border-[var(--border-dark)] bg-[#d3d3d3] px-3 text-sm text-[var(--primary)] focus:outline-none"
                       />
                     </div>
@@ -183,7 +191,14 @@ export function SalesCustomerProfileModal({
                       <label className="text-[10px] font-bold uppercase text-[var(--muted)]">Nationality</label>
                       <input
                         value={nationality}
-                        onChange={(event) => setNationality(event.target.value)}
+                        onChange={(event) =>
+                          setDraft((prev) => ({
+                            fullName: prev?.fullName ?? displayLead.name,
+                            status: prev?.status ?? displayLead.status,
+                            occupation: prev?.occupation ?? "Business Consultant",
+                            nationality: event.target.value,
+                          }))
+                        }
                         className="h-9 w-full rounded-xl border border-[var(--border-dark)] bg-[#d3d3d3] px-3 text-sm text-[var(--primary)] focus:outline-none"
                       />
                     </div>
@@ -335,7 +350,7 @@ export function SalesCustomerProfileModal({
                     <div>
                       <p className="text-xs font-semibold text-[var(--primary)]">System Notification</p>
                       <p className="text-[10px] text-[var(--muted)]">2 days ago</p>
-                      <p className="mt-1 text-xs text-[var(--primary)]">Inquiry received for "Luxury Alpine Escape" via Website.</p>
+                      <p className="mt-1 text-xs text-[var(--primary)]">Inquiry received for &quot;Luxury Alpine Escape&quot; via Website.</p>
                     </div>
                   </div>
                 </div>
@@ -354,8 +369,6 @@ export function SalesCustomerProfileModal({
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </>
+    </BaseModal>
   );
 }

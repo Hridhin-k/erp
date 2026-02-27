@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback } from "react";
 import { X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
+import { BaseModal } from "@/components/ui/BaseModal";
 
 export interface TeamFormData {
   name: string;
@@ -33,7 +34,6 @@ export function CreateTeamModal({
   const [teamName, setTeamName] = useState(initialData?.name ?? "");
   const [teamLeadId, setTeamLeadId] = useState(initialData?.teamLeadId ?? "");
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dialogRef = useRef<HTMLDivElement>(null);
 
   const isEdit = mode === "edit";
 
@@ -59,36 +59,17 @@ export function CreateTeamModal({
 
   const selectedLead = teamLeads.find((l) => l.id === teamLeadId);
 
-  useEffect(() => {
-    if (!open) return;
-    dialogRef.current?.focus();
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") handleClose();
-    };
-    document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, [open, handleClose]);
-
-  if (!open) return null;
-
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
-      onClick={handleClose}
-      data-node-id={isEdit ? "139:2835" : "139:2798"}
+    <BaseModal
+      open={open}
+      onOpenChange={onOpenChange}
+      ariaLabel={isEdit ? "Edit Team" : "Create New Team"}
+      className={cn(
+        "max-w-[480px] rounded-2xl border-[0.8px] bg-white",
+        isEdit ? "border-black" : "border-[var(--primary)]"
+      )}
+      dataNodeId={isEdit ? "139:2835" : "139:2798"}
     >
-      <div
-        ref={dialogRef}
-        role="dialog"
-        aria-modal="true"
-        aria-label={isEdit ? "Edit Team" : "Create New Team"}
-        tabIndex={-1}
-        className={cn(
-          "w-full max-w-[480px] rounded-2xl border-[0.8px] bg-white",
-          isEdit ? "border-black" : "border-[var(--primary)]"
-        )}
-        onClick={(e) => e.stopPropagation()}
-      >
         <form onSubmit={handleSubmit} className="flex flex-col gap-6 p-6 pb-[0.8px]">
           {/* Header */}
           <div className="flex items-center justify-between">
@@ -220,7 +201,6 @@ export function CreateTeamModal({
             </div>
           </div>
         </form>
-      </div>
-    </div>
+    </BaseModal>
   );
 }

@@ -28,7 +28,7 @@ import {
   Line,
 } from "recharts";
 import { Header } from "@/components/layout/Header";
-import { useAuth } from "@/contexts/AuthContext";
+import { useRole } from "@/lib/hooks/useRole";
 import { ActionBar } from "@/components/ui/ActionBar";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
@@ -80,9 +80,7 @@ export function AnalyticsClientPage({
   performanceComparisonData,
   metricsData,
 }: AnalyticsClientPageProps) {
-  const { user } = useAuth();
-  const isTeamLead = user?.role === "team-lead";
-  const isSalesAssociate = user?.role === "sales-associate";
+  const { user, isTeamLead, isSalesAssociate } = useRole();
   const calendarAnchorRef = useRef<HTMLDivElement>(null);
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [comparisonTab, setComparisonTab] = useState<ComparisonTab>("teams");

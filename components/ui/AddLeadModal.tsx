@@ -110,7 +110,7 @@ export function AddLeadModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
+      className="fixed inset-0 z-50 flex items-stretch justify-end bg-black/40"
       onClick={() => handleClose()}
       data-node-id="139:2413"
     >
@@ -121,7 +121,7 @@ export function AddLeadModal({
         aria-label={title}
         tabIndex={-1}
         className={cn(
-          "w-full max-w-[766px] overflow-hidden rounded-[14px] border-[1.067px] border-solid border-[var(--border-dark)] bg-white",
+          "modal-slide-in-right ml-auto h-full max-h-screen w-full max-w-[766px] overflow-y-auto border-[1.067px] border-solid border-[var(--border-dark)] bg-white shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]",
           className
         )}
         onClick={(e) => e.stopPropagation()}

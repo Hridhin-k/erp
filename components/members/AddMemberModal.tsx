@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback } from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
+import { BaseModal } from "@/components/ui/BaseModal";
 
 const ROLES = [
   { id: "team-lead", label: "Team Lead" },
@@ -34,7 +35,6 @@ export function AddMemberModal({
   const [team, setTeam] = useState("");
   const [roleOpen, setRoleOpen] = useState(false);
   const [teamOpen, setTeamOpen] = useState(false);
-  const dialogRef = useRef<HTMLDivElement>(null);
 
   const resetForm = useCallback(() => {
     setFullName("");
@@ -64,33 +64,14 @@ export function AddMemberModal({
 
   const selectedRole = ROLES.find((r) => r.id === role);
 
-  useEffect(() => {
-    if (!open) return;
-    dialogRef.current?.focus();
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") handleClose();
-    };
-    document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, [open, handleClose]);
-
-  if (!open) return null;
-
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
-      onClick={handleClose}
-      data-node-id="139:2967"
+    <BaseModal
+      open={open}
+      onOpenChange={onOpenChange}
+      ariaLabel="Add New Member"
+      className="max-w-[480px] rounded-2xl border-[0.8px] border-[#a0a9ba] bg-white"
+      dataNodeId="139:2967"
     >
-      <div
-        ref={dialogRef}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Add New Member"
-        tabIndex={-1}
-        className="w-full max-w-[480px] rounded-2xl border-[0.8px] border-[#a0a9ba] bg-white"
-        onClick={(e) => e.stopPropagation()}
-      >
         <form onSubmit={handleSubmit} className="flex flex-col gap-6 p-6 pb-[0.8px]">
           {/* Header */}
           <h2 className="text-xl font-semibold text-[var(--primary)]">
@@ -250,7 +231,6 @@ export function AddMemberModal({
             </div>
           </div>
         </form>
-      </div>
-    </div>
+    </BaseModal>
   );
 }

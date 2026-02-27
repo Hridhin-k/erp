@@ -74,7 +74,7 @@ export function LeadDetailPanel({
         aria-modal="true"
         aria-label="Lead Details"
         tabIndex={-1}
-        className="fixed inset-y-0 right-0 z-50 flex w-full max-w-[672px] flex-col bg-[#f8fafc] shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]"
+        className="modal-slide-in-right fixed inset-y-0 right-0 z-50 flex w-full max-w-[672px] flex-col bg-[#f8fafc] shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]"
         data-node-id="139:3019"
       >
       {/* Header - 139:3020 / 139:3287 */}

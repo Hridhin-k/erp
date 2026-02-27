@@ -90,7 +90,7 @@ export function MemberDetailPanel({
         aria-modal="true"
         aria-label="Member Details"
         tabIndex={-1}
-        className="fixed inset-y-0 right-0 z-50 flex w-full max-w-[672px] flex-col bg-white shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]"
+        className="modal-slide-in-right fixed inset-y-0 right-0 z-50 flex w-full max-w-[672px] flex-col bg-white shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]"
         data-node-id="139:2870"
       >
         <div className="flex-1 overflow-y-auto">
