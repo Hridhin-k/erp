@@ -3,24 +3,62 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  /* ERP design tokens (light) */
+  --primary: #0c234f;
+  --primary-light: #0e2e6a;
+  --accent: #7bd6fd;
+  --success: #41e363;
+  --border: rgba(12, 35, 79, 0.39);
+  --border-dark: #a0a9ba;
+  --muted: rgba(12, 35, 79, 0.53);
+  --surface: #ffffff;
+  --surface-muted: #f8fafc;
+  --danger: #ef4444;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-accent: var(--accent);
+  --color-success: var(--success);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-danger: var(--danger);
+  --font-sans: var(--font-figtree), var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+/* Dark mode intentionally disabled for now (light-only app).
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #07152f;
+    --foreground: #e8eefc;
+    --primary: #e8eefc;
+    --primary-light: #b7c6ef;
+    --accent: #4eb8e8;
+    --success: #51d971;
+    --border: rgba(232, 238, 252, 0.32);
+    --border-dark: #3d4e73;
+    --muted: rgba(232, 238, 252, 0.67);
+    --surface: #0b1e42;
+    --surface-muted: #112851;
+    --danger: #f87171;
   }
 }
+*/
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-figtree), Arial, Helvetica, sans-serif;
 }
