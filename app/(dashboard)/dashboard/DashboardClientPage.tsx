@@ -12,9 +12,17 @@ import {
   Download,
   UserPlus,
   PlusCircle,
+  Plus,
+  Eye,
+  MoreVertical,
+  Mail,
   Activity,
   Phone,
   TrendingUp,
+  CheckCircle,
+  Globe,
+  Monitor,
+  MessageCircle,
 } from "lucide-react";
 import {
   AreaChart,
@@ -41,6 +49,7 @@ import {
 } from "@/components/ui/Table";
 import { Progress } from "@/components/ui/Progress";
 import { Button } from "@/components/ui/Button";
+import { Badge } from "@/components/ui/Badge";
 import type {
   DashboardKpi,
   LeadSourceItem,
@@ -66,6 +75,22 @@ const AssignLeadsModal = dynamic(
   () =>
     import("@/features/leads/components/AssignLeadsModal").then(
       (mod) => mod.AssignLeadsModal
+    ),
+  { loading: () => null }
+);
+
+const LogActivityModal = dynamic(
+  () =>
+    import("@/features/leads/components/LogActivityModal").then(
+      (mod) => mod.LogActivityModal
+    ),
+  { loading: () => null }
+);
+
+const SalesCustomerProfileModal = dynamic(
+  () =>
+    import("@/features/leads/components/SalesCustomerProfileModal").then(
+      (mod) => mod.SalesCustomerProfileModal
     ),
   { loading: () => null }
 );
@@ -137,6 +162,93 @@ const liveActivityRows = [
   { name: "Ahmed Ali", calls: 5, conv: 1, dealValue: "$12,800" },
 ];
 
+interface SalesAssociateKpi {
+  label: string;
+  value: string;
+  icon: React.ComponentType<{ className?: string }>;
+}
+
+const salesAssociateKpis: SalesAssociateKpi[] = [
+  { label: "Follow-ups Due Today", value: "3", icon: Calendar },
+  { label: "Conversions Today", value: "3", icon: CheckCircle },
+  { label: "My Forecast", value: "$43K", icon: DollarSign },
+  { label: "Active Leads", value: "6", icon: UserPlus },
+];
+
+type SalesLeadStatus = "new" | "assigned" | "interested" | "follow-up";
+type SalesLeadSource = "Website" | "Social Media" | "Google Ads" | "WhatsApp";
+
+interface SalesAssociateLeadRow {
+  id: string;
+  name: string;
+  phone: string;
+  email: string;
+  source: SalesLeadSource;
+  status: SalesLeadStatus;
+  assignedTo: string;
+  created: string;
+}
+
+const salesAssociateLeads: SalesAssociateLeadRow[] = [
+  {
+    id: "L001",
+    name: "Rajesh Kumar",
+    phone: "+91 98765 43210",
+    email: "rajesh.kumar@email.com",
+    source: "Website",
+    status: "new",
+    assignedTo: "Ravi Mehta",
+    created: "4 Dec 2025, 09:30 am",
+  },
+  {
+    id: "L002",
+    name: "Priya Sharma",
+    phone: "+91 98765 43211",
+    email: "priya.sharma@email.com",
+    source: "Social Media",
+    status: "new",
+    assignedTo: "Ravi Mehta",
+    created: "4 Dec 2025, 10:15 am",
+  },
+  {
+    id: "L003",
+    name: "Amit Patel",
+    phone: "+91 98765 43212",
+    email: "amit.patel@email.com",
+    source: "Google Ads",
+    status: "assigned",
+    assignedTo: "Ravi Mehta",
+    created: "3 Dec 2025, 02:20 pm",
+  },
+  {
+    id: "L004",
+    name: "Sneha Reddy",
+    phone: "+91 98765 43213",
+    email: "sneha.reddy@email.com",
+    source: "WhatsApp",
+    status: "interested",
+    assignedTo: "Ravi Mehta",
+    created: "2 Dec 2025, 11:00 am",
+  },
+  {
+    id: "L005",
+    name: "Vikram Singh",
+    phone: "+91 98765 43214",
+    email: "vikram.singh@email.com",
+    source: "Website",
+    status: "follow-up",
+    assignedTo: "Ravi Mehta",
+    created: "1 Dec 2025, 04:30 pm",
+  },
+];
+
+const sourceIconMap: Record<SalesLeadSource, React.ComponentType<{ className?: string }>> = {
+  Website: Globe,
+  "Social Media": Monitor,
+  "Google Ads": Globe,
+  WhatsApp: MessageCircle,
+};
+
 interface DashboardClientPageProps {
   kpiData: DashboardKpi[];
   revenueData: RevenuePoint[];
@@ -152,11 +264,20 @@ export function DashboardClientPage({
 }: DashboardClientPageProps) {
   const { user } = useAuth();
   const isTeamLead = user?.role === "team-lead";
-  const displayName = isTeamLead ? "Team Lead" : user?.name ?? "User";
+  const isSalesAssociate = user?.role === "sales-associate";
+  const displayName = isTeamLead
+    ? "Team Lead"
+    : isSalesAssociate
+      ? "Sales Associate"
+      : user?.name ?? "User";
   const calendarAnchorRef = useRef<HTMLDivElement>(null);
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [addLeadOpen, setAddLeadOpen] = useState(false);
   const [assignLeadsOpen, setAssignLeadsOpen] = useState(false);
+  const [logActivityOpen, setLogActivityOpen] = useState(false);
+  const [viewingSalesLeadId, setViewingSalesLeadId] = useState<string | null>(null);
+  const selectedSalesLead =
+    salesAssociateLeads.find((lead) => lead.id === viewingSalesLeadId) ?? null;
 
   return (
     <>
@@ -215,6 +336,54 @@ export function DashboardClientPage({
                 onClick={() => setAssignLeadsOpen(true)}
               >
                 Assign Leads
+              </Button>
+              <Button
+                variant="primary"
+                size="md"
+                leftIcon={<PlusCircle className="size-4" />}
+                onClick={() => setAddLeadOpen(true)}
+              >
+                Add Lead
+              </Button>
+            </div>
+          ) : isSalesAssociate ? (
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="text-base font-medium text-[var(--primary)]">
+                Today
+              </span>
+              <div ref={calendarAnchorRef} className="relative">
+                <Button
+                  variant="secondary"
+                  size="icon"
+                  onClick={() => setCalendarOpen((open) => !open)}
+                  aria-expanded={calendarOpen}
+                  aria-haspopup="dialog"
+                >
+                  <Calendar className="size-4" />
+                </Button>
+                <DateRangePicker
+                  open={calendarOpen}
+                  onOpenChange={setCalendarOpen}
+                  anchorRef={calendarAnchorRef}
+                />
+              </div>
+              <Button variant="secondary" size="icon" aria-label="Filter">
+                <Filter className="size-4" />
+              </Button>
+              <Button
+                variant="secondary"
+                size="md"
+                leftIcon={<Download className="size-4" />}
+              >
+                Export Report
+              </Button>
+              <Button
+                variant="secondary"
+                size="md"
+                leftIcon={<Plus className="size-4" />}
+                onClick={() => setLogActivityOpen(true)}
+              >
+                Log Activity
               </Button>
               <Button
                 variant="primary"
@@ -381,6 +550,106 @@ export function DashboardClientPage({
               </Card>
             </div>
           </>
+        ) : isSalesAssociate ? (
+          <>
+            <div className="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {salesAssociateKpis.map((kpi) => {
+                const Icon = kpi.icon;
+                return (
+                  <Card key={kpi.label} className="border-[var(--border-dark)]">
+                    <div className="flex size-10 items-center justify-center rounded-xl bg-[var(--accent)]/50">
+                      <Icon className="size-5 text-[var(--primary)]" />
+                    </div>
+                    <div className="mt-4">
+                      <p className="text-4xl font-medium text-[var(--primary)]">
+                        {kpi.value}
+                      </p>
+                      <p className="mt-1 text-sm text-[var(--primary)]">
+                        {kpi.label}
+                      </p>
+                    </div>
+                  </Card>
+                );
+              })}
+            </div>
+
+            <Card className="border-[var(--border-dark)]">
+              <h3 className="mb-5 text-base font-semibold text-[var(--primary)]">
+                My Leads
+              </h3>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Lead ID</TableHead>
+                    <TableHead>Name</TableHead>
+                    <TableHead>Contact</TableHead>
+                    <TableHead>Source</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead>Assigned To</TableHead>
+                    <TableHead>Created</TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {salesAssociateLeads.map((row) => {
+                    const SourceIcon = sourceIconMap[row.source];
+                    return (
+                      <TableRow key={row.id}>
+                        <TableCell className="font-medium">{row.id}</TableCell>
+                        <TableCell>{row.name}</TableCell>
+                        <TableCell>
+                          <div className="flex flex-col gap-0.5">
+                            <span className="flex items-center gap-1.5 text-xs">
+                              <Phone className="size-3 text-[var(--success)]" />
+                              {row.phone}
+                            </span>
+                            <span className="flex items-center gap-1.5 text-xs text-[var(--muted)]">
+                              <Mail className="size-3" />
+                              {row.email}
+                            </span>
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <span className="flex items-center gap-2">
+                            <span className="flex size-6 items-center justify-center rounded-full bg-[var(--accent)]/40">
+                              <SourceIcon className="size-3 text-[var(--primary)]" />
+                            </span>
+                            {row.source}
+                          </span>
+                        </TableCell>
+                        <TableCell>
+                          <Badge variant={row.status}>{row.status}</Badge>
+                        </TableCell>
+                        <TableCell>{row.assignedTo}</TableCell>
+                        <TableCell className="text-xs text-[var(--muted)]">
+                          {row.created}
+                        </TableCell>
+                        <TableCell className="text-right">
+                          <div className="flex items-center justify-end gap-2">
+                            <Button
+                              variant="secondary"
+                              size="icon"
+                              aria-label={`View ${row.name}`}
+                              onClick={() => setViewingSalesLeadId(row.id)}
+                            >
+                              <Eye className="size-4" />
+                            </Button>
+                            <button
+                              type="button"
+                              className="inline-flex size-8 items-center justify-center rounded-md text-[var(--primary)] transition-colors hover:bg-[var(--accent)]/20"
+                              aria-label="More lead actions"
+                            >
+                              <MoreVertical className="size-4" />
+                            </button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
+                </TableBody>
+              </Table>
+            </Card>
+          </>
         ) : (
           <>
             <div className="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -518,6 +787,17 @@ export function DashboardClientPage({
       <AssignLeadsModal
         open={assignLeadsOpen}
         onOpenChange={setAssignLeadsOpen}
+      />
+
+      <LogActivityModal
+        open={logActivityOpen}
+        onOpenChange={setLogActivityOpen}
+      />
+
+      <SalesCustomerProfileModal
+        open={isSalesAssociate && !!viewingSalesLeadId}
+        onOpenChange={(open) => !open && setViewingSalesLeadId(null)}
+        lead={selectedSalesLead}
       />
     </>
   );

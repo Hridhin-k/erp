@@ -32,7 +32,7 @@ const roleNavMap = {
   ],
   "sales-associate": [
     { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-    { href: "/leads", label: "Leads", icon: Users },
+    { href: "/analytics", label: "Analytics", icon: BarChart3 },
   ],
 } as const;
 

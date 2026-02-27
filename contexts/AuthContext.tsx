@@ -42,6 +42,12 @@ const MOCK_CREDENTIALS = [
     name: "Team Lead User",
     role: "team-lead" as const,
   },
+  {
+    email: "sales@holidaypanda.com",
+    password: "password123",
+    name: "Sales Associate User",
+    role: "sales-associate" as const,
+  },
   { email: "demo@example.com", password: "password123", name: "Demo User", role: "admin" as const },
   { email: "renjith@example.com", password: "password123", name: "Renjith", role: "admin" as const },
   // Accept any email with password "password123" for convenience

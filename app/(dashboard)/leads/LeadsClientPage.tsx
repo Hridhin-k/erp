@@ -53,6 +53,14 @@ const LeadDetailPanel = dynamic(
   { loading: () => null }
 );
 
+const SalesCustomerProfileModal = dynamic(
+  () =>
+    import("@/features/leads/components/SalesCustomerProfileModal").then(
+      (mod) => mod.SalesCustomerProfileModal
+    ),
+  { loading: () => null }
+);
+
 const DateRangePicker = dynamic(
   () =>
     import("@/components/ui/DateRangePicker").then((mod) => mod.DateRangePicker),
@@ -83,6 +91,7 @@ interface LeadsClientPageProps {
 export function LeadsClientPage({ leads, kpis }: LeadsClientPageProps) {
   const { user } = useAuth();
   const isTeamLead = user?.role === "team-lead";
+  const isSalesAssociate = user?.role === "sales-associate";
   const calendarAnchorRef = useRef<HTMLDivElement>(null);
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [dateFilter, setDateFilter] = useState("Today");
@@ -300,7 +309,13 @@ export function LeadsClientPage({ leads, kpis }: LeadsClientPageProps) {
       />
 
       <LeadDetailPanel
-        open={!!viewingLeadId}
+        open={!isSalesAssociate && !!viewingLeadId}
+        onOpenChange={(open) => !open && setViewingLeadId(null)}
+        lead={leads.find((l) => l.id === viewingLeadId) ?? null}
+      />
+
+      <SalesCustomerProfileModal
+        open={isSalesAssociate && !!viewingLeadId}
         onOpenChange={(open) => !open && setViewingLeadId(null)}
         lead={leads.find((l) => l.id === viewingLeadId) ?? null}
       />

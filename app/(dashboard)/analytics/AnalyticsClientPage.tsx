@@ -82,6 +82,7 @@ export function AnalyticsClientPage({
 }: AnalyticsClientPageProps) {
   const { user } = useAuth();
   const isTeamLead = user?.role === "team-lead";
+  const isSalesAssociate = user?.role === "sales-associate";
   const calendarAnchorRef = useRef<HTMLDivElement>(null);
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [comparisonTab, setComparisonTab] = useState<ComparisonTab>("teams");
@@ -90,6 +91,31 @@ export function AnalyticsClientPage({
     { id: "teams", label: "Teams" },
     { id: "individuals", label: "Individuals" },
     { id: "sources", label: "Sources" },
+  ];
+
+  const salesPipelineData = [
+    { name: "Assigned", value: 1, color: "#8f8f8f" },
+    { name: "Contacted", value: 1, color: "#6f839f" },
+    { name: "Interested", value: 2, color: "#0c234f" },
+    { name: "Needs Follow-up", value: 1, color: "#2f8be6" },
+    { name: "Confirmed", value: 1, color: "#70c3e6" },
+  ];
+
+  const salesWeeklyTrendData = [
+    { day: "Mon", calls: 12, conversions: 1 },
+    { day: "Tue", calls: 18, conversions: 2 },
+    { day: "Wed", calls: 15, conversions: 1.5 },
+    { day: "Thu", calls: 22, conversions: 3 },
+    { day: "Fri", calls: 20, conversions: 2 },
+  ];
+
+  const salesPackageInterestData = [
+    { name: "Thailand Adventure", value: 1.0 },
+    { name: "Greek Islands", value: 0.63 },
+    { name: "Singapore", value: 0.87 },
+    { name: "Bali", value: 0.48 },
+    { name: "Safari Adventure", value: 1.0 },
+    { name: "Paris Luxury", value: 0.69 },
   ];
 
   return (
@@ -103,11 +129,11 @@ export function AnalyticsClientPage({
 
       <div className="p-8">
         <div className="mb-8 flex items-center justify-between">
-          {isTeamLead ? (
+          {isTeamLead || isSalesAssociate ? (
             <>
               <div>
                 <h1 className="text-2xl font-bold text-[var(--primary)]">
-                  Welcome back, Team Lead!
+                  Welcome back, {isTeamLead ? "Team Lead" : "Sales Associate"}!
                 </h1>
                 <p className="mt-1 text-sm text-[var(--primary-light)]">
                   Here&apos;s your team&apos;s performance overview for today
@@ -330,6 +356,158 @@ export function AnalyticsClientPage({
                 </TableBody>
               </Table>
             </Card>
+          </>
+        ) : isSalesAssociate ? (
+          <>
+            <div className="mb-4 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_2fr]">
+              <Card className="border-[var(--border-dark)]">
+                <h3 className="mb-5 text-[30px] font-semibold text-[var(--primary)]">
+                  Pipeline Status
+                </h3>
+                <div className="mx-auto h-[220px] max-w-[260px]">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie
+                        data={salesPipelineData}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={48}
+                        outerRadius={80}
+                        paddingAngle={3}
+                        dataKey="value"
+                      >
+                        {salesPipelineData.map((entry) => (
+                          <Cell key={entry.name} fill={entry.color} />
+                        ))}
+                      </Pie>
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+                <div className="mt-4 space-y-2 text-sm text-[var(--primary)]">
+                  {salesPipelineData.map((item) => (
+                    <div key={item.name} className="flex items-center justify-between">
+                      <span className="flex items-center gap-2">
+                        <span
+                          className="size-2.5 rounded-full"
+                          style={{ backgroundColor: item.color }}
+                        />
+                        {item.name}
+                      </span>
+                      <span>{item.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </Card>
+
+              <Card className="border-[var(--border-dark)]">
+                <h3 className="mb-4 text-[30px] font-semibold text-[var(--primary)]">
+                  Weekly Call vs. Conversion Trend
+                </h3>
+                <div className="h-[320px] min-h-[320px] w-full min-w-0">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={salesWeeklyTrendData}>
+                      <CartesianGrid
+                        strokeDasharray="3 3"
+                        stroke="rgba(12,35,79,0.2)"
+                      />
+                      <XAxis
+                        dataKey="day"
+                        tick={{ fill: "var(--primary)", fontSize: 14 }}
+                      />
+                      <YAxis
+                        yAxisId="left"
+                        domain={[0, 24]}
+                        tick={{ fill: "var(--primary)", fontSize: 14 }}
+                      />
+                      <YAxis
+                        yAxisId="right"
+                        orientation="right"
+                        domain={[0, 3]}
+                        tick={{ fill: "var(--primary)", fontSize: 14 }}
+                      />
+                      <Bar
+                        yAxisId="left"
+                        dataKey="calls"
+                        fill="#0c234f"
+                        radius={[4, 4, 0, 0]}
+                      />
+                      <Bar
+                        yAxisId="right"
+                        dataKey="conversions"
+                        fill="#70c3e6"
+                        radius={[4, 4, 0, 0]}
+                      />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </Card>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.2fr_1fr]">
+              <Card className="border-[var(--border-dark)]">
+                <h3 className="mb-4 text-[30px] font-semibold text-[var(--primary)]">
+                  Package Interest Distribution
+                </h3>
+                <div className="h-[280px] min-h-[280px] w-full min-w-0">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart
+                      data={salesPackageInterestData}
+                      layout="vertical"
+                      margin={{ left: 20, right: 10 }}
+                    >
+                      <CartesianGrid
+                        strokeDasharray="3 3"
+                        stroke="rgba(12,35,79,0.2)"
+                      />
+                      <XAxis
+                        type="number"
+                        domain={[0, 1]}
+                        tick={{ fill: "var(--primary)", fontSize: 12 }}
+                      />
+                      <YAxis
+                        type="category"
+                        dataKey="name"
+                        width={120}
+                        tick={{ fill: "var(--primary)", fontSize: 12 }}
+                      />
+                      <Bar dataKey="value" fill="#70c3e6" radius={[0, 4, 4, 0]} />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </Card>
+
+              <Card className="border-[var(--border-dark)]">
+                <h3 className="mb-4 text-[30px] font-semibold text-[var(--primary)]">
+                  Monthly Target Progress
+                </h3>
+                <div className="space-y-6">
+                  <div>
+                    <div className="mb-2 flex items-center justify-between text-sm text-[var(--primary)]">
+                      <span>Revenue Goal ($50,000)</span>
+                      <span>$42,900</span>
+                    </div>
+                    <Progress value={85.8} />
+                  </div>
+                  <div>
+                    <div className="mb-2 flex items-center justify-between text-sm text-[var(--primary)]">
+                      <span>Daily Call Target (20)</span>
+                      <span>12</span>
+                    </div>
+                    <Progress value={60} />
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="rounded-xl border border-[var(--border-dark)] p-4">
+                      <p className="text-sm text-[var(--primary)]">Efficiency Rate</p>
+                      <p className="mt-1 text-4xl font-medium text-[var(--primary)]">25.0%</p>
+                    </div>
+                    <div className="rounded-xl border border-[var(--border-dark)] p-4">
+                      <p className="text-sm text-[var(--primary)]">Avg Deal Value</p>
+                      <p className="mt-1 text-4xl font-medium text-[var(--primary)]">$7150</p>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </div>
           </>
         ) : (
           <>

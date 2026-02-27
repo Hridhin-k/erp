@@ -121,6 +121,9 @@ export function LoginClientPage() {
             <code className="rounded bg-gray-100 px-1">password123</code> or{" "}
             <code className="rounded bg-gray-100 px-1">teamlead@holidaypanda.com</code>{" "}
             (Team Lead) /{" "}
+            <code className="rounded bg-gray-100 px-1">password123</code> or{" "}
+            <code className="rounded bg-gray-100 px-1">sales@holidaypanda.com</code>{" "}
+            (Sales Associate) /{" "}
             <code className="rounded bg-gray-100 px-1">password123</code>
           </p>
         </div>
