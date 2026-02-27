@@ -60,7 +60,7 @@ export function LeadActionsDropdown({
       tabIndex={-1}
       aria-label="Lead actions"
       className={cn(
-        "absolute right-0 top-full z-50 mt-1 min-w-[197px] overflow-hidden rounded-[6px] border-[0.8px] border-solid border-black/[0.08] bg-white py-1 shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1),0px_2px_4px_-2px_rgba(0,0,0,0.1)]",
+        "fade-in-soft absolute right-0 top-full z-50 mt-1 min-w-[197px] overflow-hidden rounded-[6px] border-[0.8px] border-solid border-black/[0.08] bg-white py-1 shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1),0px_2px_4px_-2px_rgba(0,0,0,0.1)]",
         className
       )}
       data-name="LeadActionsDropdown"
@@ -72,7 +72,7 @@ export function LeadActionsDropdown({
           onEdit?.();
           onOpenChange(false);
         }}
-        className="flex w-full items-center gap-3 px-3 py-2 text-left text-sm font-medium text-[var(--primary)] transition-colors hover:bg-[var(--primary)]/5"
+        className="flex w-full items-center gap-3 px-3 py-2 text-left text-sm font-medium text-[var(--primary)] transition-[background-color,color,transform] duration-150 ease-out hover:translate-x-[1px] hover:bg-[var(--primary)]/5"
         role="menuitem"
         data-node-id="139:2771"
       >
@@ -85,7 +85,7 @@ export function LeadActionsDropdown({
           onDelete?.();
           onOpenChange(false);
         }}
-        className="flex w-full items-center gap-3 px-3 py-2 text-left text-sm font-medium text-[#ff5151] transition-colors hover:bg-red-50"
+        className="flex w-full items-center gap-3 px-3 py-2 text-left text-sm font-medium text-[#ff5151] transition-[background-color,color,transform] duration-150 ease-out hover:translate-x-[1px] hover:bg-red-50"
         role="menuitem"
         data-node-id="139:2776"
       >

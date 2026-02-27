@@ -39,7 +39,7 @@ export function BaseModal({
   return (
     <div
       className={cn(
-        "fixed inset-0 z-50 flex items-stretch justify-end bg-black/40",
+        "fade-in-soft fixed inset-0 z-50 flex items-stretch justify-end bg-black/40",
         wrapperClassName
       )}
       onClick={() => onOpenChange(false)}

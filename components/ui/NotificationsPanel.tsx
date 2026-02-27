@@ -115,7 +115,7 @@ export function NotificationsPanel({
       tabIndex={-1}
       aria-label="Recent activities"
       className={cn(
-        "absolute right-0 top-full z-50 mt-2 w-[400px] overflow-hidden rounded-[14px] border-[1.067px] border-solid border-[#e5e7eb] bg-white pb-[1.067px] pt-[25.067px] shadow-[0px_1px_3px_0px_rgba(0,0,0,0.1),0px_1px_2px_0px_rgba(0,0,0,0.1)]",
+        "fade-in-soft absolute right-0 top-full z-50 mt-2 w-[400px] overflow-hidden rounded-[14px] border-[1.067px] border-solid border-[#e5e7eb] bg-white pb-[1.067px] pt-[25.067px] shadow-[0px_1px_3px_0px_rgba(0,0,0,0.1),0px_1px_2px_0px_rgba(0,0,0,0.1)]",
         className
       )}
       data-name="Notifications"
@@ -150,7 +150,7 @@ export function NotificationsPanel({
             <div
               key={activity.id}
               className={cn(
-                "flex gap-4 rounded-[10px] px-4 pt-4 pb-4",
+                "flex gap-4 rounded-[10px] px-4 pt-4 pb-4 transition-[background-color,transform] duration-150 ease-out hover:translate-x-[1px]",
                 cardBg
               )}
             >

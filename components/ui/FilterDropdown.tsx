@@ -88,7 +88,7 @@ export function FilterDropdown({
       tabIndex={-1}
       aria-label="Lead filters"
       className={cn(
-        "absolute right-0 top-full z-50 mt-2 w-[200px] min-w-0 overflow-hidden rounded-[11.413px] bg-white p-4 shadow-[-1.802px_2.403px_14.657px_-4.205px_rgba(0,0,0,0.09)]",
+        "fade-in-soft absolute right-0 top-full z-50 mt-2 w-[200px] min-w-0 overflow-hidden rounded-[11.413px] bg-white p-4 shadow-[-1.802px_2.403px_14.657px_-4.205px_rgba(0,0,0,0.09)]",
         className
       )}
       data-name="FilterDropDown"
@@ -161,7 +161,7 @@ function FilterSection({
       <button
         type="button"
         onClick={() => setExpanded(!expanded)}
-        className="mb-2 flex w-full items-center justify-between text-left"
+        className="mb-2 flex w-full items-center justify-between rounded-md px-1 text-left transition-colors duration-150 ease-out hover:bg-[var(--primary)]/5"
       >
         <span className="text-[9.611px] font-medium text-[var(--primary)]">{title}</span>
         <ChevronDown
@@ -177,7 +177,7 @@ function FilterSection({
                 key={opt}
                 type="button"
                 onClick={() => onSelect(opt)}
-                className="flex items-center gap-2 text-left"
+                className="flex items-center gap-2 rounded-md px-1 py-0.5 text-left transition-[background-color,color,transform] duration-150 ease-out hover:translate-x-[1px] hover:bg-[var(--primary)]/5"
                 role="radio"
                 aria-checked={isSelected}
               >

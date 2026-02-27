@@ -25,7 +25,7 @@ export function Tabs({ tabs, activeId, onTabChange, className }: TabsProps) {
             type="button"
             onClick={() => onTabChange(tab.id)}
             className={cn(
-              "relative px-4 py-2 text-sm transition-colors",
+              "relative px-4 py-2 text-sm transition-[background-color,color,transform] duration-150 ease-out hover:-translate-y-[1px]",
               isActive
                 ? "font-medium text-[var(--primary)]"
                 : "font-normal text-[var(--primary)] hover:bg-[var(--primary)]/5"
@@ -33,7 +33,7 @@ export function Tabs({ tabs, activeId, onTabChange, className }: TabsProps) {
           >
             {tab.label}
             {isActive && (
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[var(--primary)]" />
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 origin-left bg-[var(--primary)] transition-transform duration-150 ease-out" />
             )}
           </button>
         );

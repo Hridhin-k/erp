@@ -98,7 +98,7 @@ export function DateRangePicker({
       tabIndex={-1}
       aria-label="Date range picker"
       className={cn(
-        "absolute right-0 top-full z-50 mt-2 min-w-0 w-[240px] overflow-hidden rounded-[11.413px] bg-white p-4 shadow-[-1.802px_2.403px_14.657px_-4.205px_rgba(0,0,0,0.09)]",
+        "fade-in-soft absolute right-0 top-full z-50 mt-2 min-w-0 w-[240px] overflow-hidden rounded-[11.413px] bg-white p-4 shadow-[-1.802px_2.403px_14.657px_-4.205px_rgba(0,0,0,0.09)]",
         className
       )}
       data-name="DateRangePicker"
@@ -114,7 +114,8 @@ export function DateRangePicker({
             "h-auto min-w-0 rounded-[6.007px] border-[0.601px] border-solid px-3 py-1.5 text-[9.01px] font-medium",
             preset === "today"
               ? "border-transparent bg-[#bdeafe] text-[var(--primary)] hover:bg-[#bdeafe]"
-              : "border-[var(--primary)] bg-transparent text-[var(--primary)] hover:bg-[var(--primary)]/5"
+              : "border-[var(--primary)] bg-transparent text-[var(--primary)] hover:bg-[var(--primary)]/5",
+            "transition-[background-color,color,border-color,transform,box-shadow] duration-150 ease-out hover:-translate-y-[1px] hover:shadow-sm"
           )}
           onClick={() => handlePresetClick("today")}
         >
@@ -128,7 +129,8 @@ export function DateRangePicker({
             "h-auto min-w-0 rounded-[6.007px] border-[0.601px] border-solid px-3 py-1.5 text-[9.01px] font-medium",
             preset === "lastWeek"
               ? "border-transparent bg-[#bdeafe] text-[var(--primary)] hover:bg-[#bdeafe]"
-              : "border-[var(--primary)] bg-transparent text-[var(--primary)] hover:bg-[var(--primary)]/5"
+              : "border-[var(--primary)] bg-transparent text-[var(--primary)] hover:bg-[var(--primary)]/5",
+            "transition-[background-color,color,border-color,transform,box-shadow] duration-150 ease-out hover:-translate-y-[1px] hover:shadow-sm"
           )}
           onClick={() => handlePresetClick("lastWeek")}
         >
@@ -142,7 +144,8 @@ export function DateRangePicker({
             "h-auto min-w-0 rounded-[6.007px] border-[0.601px] border-solid px-3 py-1.5 text-[9.01px] font-medium",
             preset === "custom"
               ? "border-transparent bg-[#bdeafe] text-[var(--primary)] hover:bg-[#bdeafe]"
-              : "border-[var(--primary)] bg-transparent text-[var(--primary)] hover:bg-[var(--primary)]/5"
+              : "border-[var(--primary)] bg-transparent text-[var(--primary)] hover:bg-[var(--primary)]/5",
+            "transition-[background-color,color,border-color,transform,box-shadow] duration-150 ease-out hover:-translate-y-[1px] hover:shadow-sm"
           )}
           onClick={() => setPreset("custom")}
         >
@@ -170,9 +173,9 @@ export function DateRangePicker({
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
             onClick={() => setPreset("custom")}
-            className="h-[34px] min-w-0 w-full rounded-[6.007px] border-[0.601px] border-solid border-[var(--primary)] bg-white px-3 pr-8 text-[9.01px] text-[var(--primary)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
+            className="h-[34px] min-w-0 w-full rounded-[6.007px] border-[0.601px] border-solid border-[var(--primary)] bg-white px-3 pr-8 text-[9.01px] text-[var(--primary)] transition-[background-color,border-color,box-shadow] duration-150 ease-out hover:bg-[var(--primary)]/5 focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
           />
-          <CalendarIcon className="absolute right-2 top-1/2 size-3.5 -translate-y-1/2 text-[var(--muted)]" />
+          <CalendarIcon className="absolute right-2 top-1/2 size-3.5 -translate-y-1/2 text-[var(--muted)] transition-colors duration-150 ease-out" />
         </div>
       </div>
 
@@ -193,9 +196,9 @@ export function DateRangePicker({
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
             onClick={() => setPreset("custom")}
-            className="h-[34px] min-w-0 w-full rounded-[6.007px] border-[0.601px] border-solid border-[var(--primary)] bg-white px-3 pr-8 text-[9.01px] text-[var(--primary)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
+            className="h-[34px] min-w-0 w-full rounded-[6.007px] border-[0.601px] border-solid border-[var(--primary)] bg-white px-3 pr-8 text-[9.01px] text-[var(--primary)] transition-[background-color,border-color,box-shadow] duration-150 ease-out hover:bg-[var(--primary)]/5 focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
           />
-          <CalendarIcon className="absolute right-2 top-1/2 size-3.5 -translate-y-1/2 text-[var(--muted)]" />
+          <CalendarIcon className="absolute right-2 top-1/2 size-3.5 -translate-y-1/2 text-[var(--muted)] transition-colors duration-150 ease-out" />
         </div>
       </div>
 

@@ -73,7 +73,7 @@ export function Sidebar() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium transition-colors",
+                  "flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium transition-[background-color,color,transform] duration-150 ease-out hover:translate-x-[2px]",
                   isActive
                     ? "bg-[var(--primary-light)] text-white"
                     : "text-white/90 hover:bg-white/10"
@@ -91,7 +91,7 @@ export function Sidebar() {
           <p className="mb-2 px-4 text-xs text-white/80">Settings</p>
           <Link
             href="/settings"
-            className="flex items-center gap-3 rounded-xl px-4 py-3 text-base text-white/90 hover:bg-white/10"
+            className="flex items-center gap-3 rounded-xl px-4 py-3 text-base text-white/90 transition-[background-color,color,transform] duration-150 ease-out hover:translate-x-[2px] hover:bg-white/10"
           >
             <Settings className="size-5 shrink-0" />
             Settings

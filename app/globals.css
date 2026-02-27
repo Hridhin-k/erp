@@ -23,6 +23,9 @@
   --space-3: 0.75rem;
   --space-4: 1rem;
   --space-6: 1.5rem;
+  --motion-fast: 150ms;
+  --motion-normal: 220ms;
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @theme inline {
@@ -42,14 +45,36 @@
 @keyframes slide-in-right {
   from {
     transform: translateX(100%);
+    opacity: 0.98;
   }
   to {
     transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-soft {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
 .modal-slide-in-right {
-  animation: slide-in-right 220ms ease-out;
+  animation: slide-in-right var(--motion-normal) var(--ease-standard);
+}
+
+.fade-in-soft {
+  animation: fade-in-soft var(--motion-normal) var(--ease-standard);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-slide-in-right,
+  .fade-in-soft {
+    animation: none !important;
+  }
 }
 
 body {

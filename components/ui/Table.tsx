@@ -31,7 +31,10 @@ function TableRow({
 }: React.HTMLAttributes<HTMLTableRowElement>) {
   return (
     <tr
-      className={cn("border-b border-[rgba(12,35,79,0.5)]", className)}
+      className={cn(
+        "border-b border-[rgba(12,35,79,0.5)] transition-colors duration-150 ease-out hover:bg-[var(--accent)]/10",
+        className
+      )}
       {...props}
     />
   );
