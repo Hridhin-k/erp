@@ -39,25 +39,6 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* Dark mode intentionally disabled for now (light-only app).
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #07152f;
-    --foreground: #e8eefc;
-    --primary: #e8eefc;
-    --primary-light: #b7c6ef;
-    --accent: #4eb8e8;
-    --success: #51d971;
-    --border: rgba(232, 238, 252, 0.32);
-    --border-dark: #3d4e73;
-    --muted: rgba(232, 238, 252, 0.67);
-    --surface: #0b1e42;
-    --surface-muted: #112851;
-    --danger: #f87171;
-  }
-}
-*/
-
 body {
   background: var(--background);
   color: var(--foreground);
