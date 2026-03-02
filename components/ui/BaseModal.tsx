@@ -52,7 +52,8 @@ export function BaseModal({
         tabIndex={-1}
         data-node-id={dataNodeId}
         className={cn(
-          "modal-slide-in-right ml-auto h-full max-h-screen w-full overflow-y-auto bg-white shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]",
+          "modal-slide-in-right ml-auto h-full max-h-screen w-full overflow-y-auto bg-white shadow-[var(--shadow-modal)]",
+          "sm:max-w-[85vw] md:max-w-[70vw] lg:max-w-[50vw]",
           className
         )}
         onClick={(event) => event.stopPropagation()}

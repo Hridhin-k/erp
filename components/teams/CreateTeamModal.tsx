@@ -80,7 +80,7 @@ export function CreateTeamModal({
               <button
                 type="button"
                 onClick={handleClose}
-                className="flex size-5 items-center justify-center text-[var(--muted)] transition-colors hover:text-[var(--primary)]"
+                className="flex size-9 items-center justify-center rounded-lg text-[var(--muted)] transition-colors hover:text-[var(--primary)] hover:bg-[var(--primary)]/5"
                 aria-label="Close"
               >
                 <X className="size-5" />
@@ -106,7 +106,7 @@ export function CreateTeamModal({
                 placeholder="e.g., North America Team"
                 required
                 className={cn(
-                  "h-[42px] w-full rounded-xl border-[0.8px] border-[#a0a9ba] px-4 text-base text-[var(--primary)] placeholder:text-[#a1a9b7] focus:outline-none focus:ring-1 focus:ring-[var(--primary)]",
+                  "h-11 w-full rounded-xl border-[0.8px] border-[#a0a9ba] px-4 text-base text-[var(--primary)] placeholder:text-[#a1a9b7] focus:outline-none focus:ring-1 focus:ring-[var(--primary)]",
                   isEdit ? "bg-[#eee]" : "bg-[rgba(198,198,198,0.29)]"
                 )}
               />
@@ -122,7 +122,7 @@ export function CreateTeamModal({
                   type="button"
                   onClick={() => setDropdownOpen(!dropdownOpen)}
                   className={cn(
-                    "flex h-[42px] w-full items-center justify-between rounded-xl border-[0.8px] border-[#a0a9ba] px-4 text-base text-[var(--primary)]",
+                    "flex h-11 w-full items-center justify-between rounded-xl border-[0.8px] border-[#a0a9ba] px-4 text-base text-[var(--primary)]",
                     isEdit ? "bg-[#efefef]" : "bg-[rgba(198,198,198,0.29)]"
                   )}
                 >
@@ -182,11 +182,11 @@ export function CreateTeamModal({
             </div>
 
             {/* Actions */}
-            <div className="flex gap-3 py-4">
+            <div className="flex flex-col gap-3 py-4 sm:flex-row">
               <Button
                 type="button"
                 variant="outline"
-                className="h-10 flex-1 rounded-xl"
+                className="h-11 flex-1 rounded-xl"
                 onClick={handleClose}
               >
                 Cancel
@@ -194,7 +194,7 @@ export function CreateTeamModal({
               <Button
                 type="submit"
                 variant="primary"
-                className="h-10 flex-1 rounded-xl"
+                className="h-11 flex-1 rounded-xl"
               >
                 {isEdit ? "Save Changes" : "Create Team"}
               </Button>

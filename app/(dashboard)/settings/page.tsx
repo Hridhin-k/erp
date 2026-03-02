@@ -16,9 +16,9 @@ export default function SettingsPage() {
   return (
     <>
       <Header breadcrumb="Main" breadcrumbActive="Settings" showSearch />
-      <div className="p-8">
-        <h1 className="text-2xl font-bold text-[var(--primary)]">Settings</h1>
-        <p className="mt-2 text-sm text-[var(--primary-light)]">
+      <div className="page-padding">
+        <h1 className="text-[length:var(--text-2xl)] font-bold text-[var(--primary)]">Settings</h1>
+        <p className="mt-2 text-[length:var(--text-sm)] text-[var(--primary-light)]">
           Configure your account and preferences.
         </p>
       </div>

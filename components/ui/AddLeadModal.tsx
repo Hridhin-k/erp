@@ -121,14 +121,14 @@ export function AddLeadModal({
         aria-label={title}
         tabIndex={-1}
         className={cn(
-          "modal-slide-in-right ml-auto h-full max-h-screen w-full max-w-[766px] overflow-y-auto border-[1.067px] border-solid border-[var(--border-dark)] bg-white shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]",
+          "modal-slide-in-right ml-auto h-full max-h-screen w-full overflow-y-auto border-l border-[var(--border-dark)] bg-white shadow-[var(--shadow-modal)] sm:max-w-[85vw] md:max-w-[70vw] lg:max-w-[766px]",
           className
         )}
         onClick={(e) => e.stopPropagation()}
         data-name="AddLeadModal"
       >
         {/* Header */}
-        <div className="flex h-[105px] items-center justify-between border-b border-[var(--border-dark)] px-6 py-6">
+        <div className="flex items-center justify-between border-b border-[var(--border-dark)] px-4 py-4 sm:px-6 sm:py-6">
           <div>
             <h2 className="text-2xl font-normal leading-8 text-[var(--primary)]">
               {title}
@@ -148,12 +148,12 @@ export function AddLeadModal({
         </div>
 
         {/* Mode selection */}
-        <div className="flex gap-3 px-6 pt-6">
+        <div className="flex gap-3 px-4 pt-4 sm:px-6 sm:pt-6">
           <button
             type="button"
             onClick={() => setMode("individual")}
             className={cn(
-              "flex flex-1 flex-col items-center gap-2 rounded-[10px] border-[1.067px] border-solid border-[var(--border-dark)] px-6 py-4 transition-colors",
+              "flex flex-1 flex-col items-center gap-2 rounded-[10px] border border-[var(--border-dark)] px-3 py-3 transition-colors sm:px-6 sm:py-4",
               mode === "individual"
                 ? "bg-white"
                 : "bg-white/50"
@@ -171,7 +171,7 @@ export function AddLeadModal({
             type="button"
             onClick={() => setMode("bulk")}
             className={cn(
-              "flex flex-1 flex-col items-center gap-2 rounded-[10px] border-[1.067px] border-solid border-[var(--border-dark)] px-6 py-4 transition-colors",
+              "flex flex-1 flex-col items-center gap-2 rounded-[10px] border border-[var(--border-dark)] px-3 py-3 transition-colors sm:px-6 sm:py-4",
               mode === "bulk" ? "bg-white" : "bg-white/50"
             )}
           >
@@ -187,7 +187,7 @@ export function AddLeadModal({
 
         {mode === "individual" ? (
           /* Individual Lead Form - 139:2413 */
-          <form onSubmit={handleAddLead} className="flex flex-col gap-5 px-6 pb-6 pt-8">
+          <form onSubmit={handleAddLead} className="flex flex-col gap-5 px-4 pb-6 pt-6 sm:px-6 sm:pt-8">
             <div className="space-y-2">
               <label htmlFor="fullName" className="block text-sm font-medium text-[var(--primary)]">
                 Full Name *
@@ -198,10 +198,10 @@ export function AddLeadModal({
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 required
-                className="h-[50.133px] w-full rounded-[10px] border-[1.067px] border-[var(--border-dark)] bg-white px-4 text-base text-[var(--primary)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
+                className="h-12 w-full rounded-[10px] border border-[var(--border-dark)] bg-white px-4 text-base text-[var(--primary)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
               />
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div className="space-y-2">
                 <label htmlFor="email" className="block text-sm font-medium text-[var(--primary)]">
                   Email Address *
@@ -212,7 +212,7 @@ export function AddLeadModal({
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="h-[50.133px] w-full rounded-[10px] border-[1.067px] border-[var(--border-dark)] bg-white px-4 text-base text-[var(--primary)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
+                  className="h-12 w-full rounded-[10px] border border-[var(--border-dark)] bg-white px-4 text-base text-[var(--primary)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
                 />
               </div>
               <div className="space-y-2">
@@ -225,7 +225,7 @@ export function AddLeadModal({
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   required
-                  className="h-[50.133px] w-full rounded-[10px] border-[1.067px] border-[var(--border-dark)] bg-white px-4 text-base text-[var(--primary)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
+                  className="h-12 w-full rounded-[10px] border border-[var(--border-dark)] bg-white px-4 text-base text-[var(--primary)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
                 />
               </div>
             </div>
@@ -237,7 +237,7 @@ export function AddLeadModal({
                 <button
                   type="button"
                   onClick={() => setSourceOpen(!sourceOpen)}
-                  className="flex h-[47px] w-full items-center justify-between rounded-[10px] border-[1.067px] border-[var(--border-dark)] bg-white px-4 text-base text-[var(--primary)]"
+                  className="flex h-12 w-full items-center justify-between rounded-[10px] border border-[var(--border-dark)] bg-white px-4 text-base text-[var(--primary)]"
                 >
                   <span>{source || "Select source"}</span>
                   <ChevronDown className="size-5" />
@@ -294,7 +294,7 @@ export function AddLeadModal({
           </form>
         ) : (
           /* Bulk Upload Form */
-          <div className="flex flex-col gap-6 px-6 pb-6 pt-8" data-node-id="139:2491">
+          <div className="flex flex-col gap-6 px-4 pb-6 pt-6 sm:px-6 sm:pt-8" data-node-id="139:2491">
             <div className="rounded-[10px] border-[1.067px] border-[var(--border-dark)] bg-[rgba(255,255,255,0.08)] p-4">
               <div className="flex gap-3">
                 <FileText className="mt-0.5 size-5 shrink-0 text-[var(--primary)]" />

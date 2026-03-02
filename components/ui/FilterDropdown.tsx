@@ -88,27 +88,24 @@ export function FilterDropdown({
       tabIndex={-1}
       aria-label="Lead filters"
       className={cn(
-        "fade-in-soft absolute right-0 top-full z-50 mt-2 w-[200px] min-w-0 overflow-hidden rounded-[11.413px] bg-white p-4 shadow-[-1.802px_2.403px_14.657px_-4.205px_rgba(0,0,0,0.09)]",
+        "fade-in-soft fixed inset-x-4 top-16 z-50 max-h-[80vh] overflow-y-auto rounded-[var(--radius-md)] bg-white p-4 shadow-lg sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:mt-2 sm:w-[220px]",
         className
       )}
       data-name="FilterDropDown"
       data-node-id="139:2674"
     >
-      {/* Lead Source */}
       <FilterSection
         title="Lead Source"
         options={leadSourceOptions}
         selected={leadSource}
         onSelect={setLeadSource}
       />
-      {/* Status */}
       <FilterSection
         title="Status"
         options={statusOptions}
         selected={status}
         onSelect={setStatus}
       />
-      {/* Sales Associate */}
       <FilterSection
         title="Sales Associate"
         options={salesAssociateOptions}
@@ -116,14 +113,12 @@ export function FilterDropdown({
         onSelect={setSalesAssociate}
       />
 
-      {/* Action buttons - 139:2718 Apply, 139:2719 Cancel */}
       <div className="mt-4 flex justify-end gap-2">
         <Button
           type="button"
           variant="outline"
           size="sm"
-          className="h-[21.024px] min-w-0 rounded-[6.007px] border-[0.601px] border-solid border-[var(--primary)] bg-transparent px-3 py-1 text-[9.01px] font-normal text-[var(--primary)] hover:bg-[var(--primary)]/5"
-          data-node-id="139:2719"
+          className="h-9 min-w-0 rounded-[var(--radius-sm)] border border-[var(--primary)] bg-transparent px-3 text-[length:var(--text-xs)] font-normal text-[var(--primary)] hover:bg-[var(--primary)]/5"
           onClick={() => onOpenChange(false)}
         >
           Cancel
@@ -132,8 +127,7 @@ export function FilterDropdown({
           type="button"
           variant="primary"
           size="sm"
-          className="h-[21.024px] min-w-0 rounded-[6.007px] border-0 bg-[var(--primary)] px-3 py-1 text-[9.01px] font-medium text-white hover:bg-[var(--primary-light)]"
-          data-node-id="139:2718"
+          className="h-9 min-w-0 rounded-[var(--radius-sm)] border-0 bg-[var(--primary)] px-3 text-[length:var(--text-xs)] font-medium text-white hover:bg-[var(--primary-light)]"
           onClick={handleApply}
         >
           Apply
@@ -161,15 +155,15 @@ function FilterSection({
       <button
         type="button"
         onClick={() => setExpanded(!expanded)}
-        className="mb-2 flex w-full items-center justify-between rounded-md px-1 text-left transition-colors duration-150 ease-out hover:bg-[var(--primary)]/5"
+        className="mb-2 flex w-full items-center justify-between rounded-md px-1 py-1 text-left transition-colors duration-150 ease-out hover:bg-[var(--primary)]/5"
       >
-        <span className="text-[9.611px] font-medium text-[var(--primary)]">{title}</span>
+        <span className="text-[length:var(--text-xs)] font-medium text-[var(--primary)]">{title}</span>
         <ChevronDown
-          className={cn("size-3 text-[var(--primary)] transition-transform", !expanded && "-rotate-90")}
+          className={cn("size-4 text-[var(--primary)] transition-transform", !expanded && "-rotate-90")}
         />
       </button>
       {expanded && (
-        <div className="flex flex-col gap-1.5" role="radiogroup" aria-label={title}>
+        <div className="flex flex-col gap-1" role="radiogroup" aria-label={title}>
           {options.map((opt) => {
             const isSelected = selected === opt;
             return (
@@ -177,23 +171,23 @@ function FilterSection({
                 key={opt}
                 type="button"
                 onClick={() => onSelect(opt)}
-                className="flex items-center gap-2 rounded-md px-1 py-0.5 text-left transition-[background-color,color,transform] duration-150 ease-out hover:translate-x-[1px] hover:bg-[var(--primary)]/5"
+                className="flex items-center gap-2.5 rounded-md px-1 py-1.5 text-left transition-[background-color,color,transform] duration-150 ease-out hover:translate-x-[1px] hover:bg-[var(--primary)]/5"
                 role="radio"
                 aria-checked={isSelected}
               >
                 <span
                   className={cn(
-                    "flex size-[7px] shrink-0 items-center justify-center rounded-full border",
+                    "flex size-3.5 shrink-0 items-center justify-center rounded-full border",
                     isSelected
                       ? "border-[var(--primary)] bg-[var(--accent)]"
                       : "border-[var(--border-dark)] bg-white"
                   )}
                 >
-                  {isSelected && <span className="size-1 rounded-full bg-[var(--primary)]" />}
+                  {isSelected && <span className="size-1.5 rounded-full bg-[var(--primary)]" />}
                 </span>
                 <span
                   className={cn(
-                    "text-[9.01px] font-normal",
+                    "text-[length:var(--text-xs)] font-normal",
                     isSelected ? "text-[var(--primary)]" : "text-[var(--border-dark)]"
                   )}
                 >

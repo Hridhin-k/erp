@@ -46,10 +46,10 @@ export function LogActivityModal({ open, onOpenChange }: LogActivityModalProps) 
       open={open}
       onOpenChange={onOpenChange}
       ariaLabel="Log Activity"
-      className="max-w-[510px] rounded-2xl border border-[var(--border-dark)] bg-white p-6"
+      className="max-w-full rounded-2xl border border-[var(--border-dark)] bg-white p-4 sm:max-w-[85vw] sm:p-6 md:max-w-[70vw] lg:max-w-[510px]"
       dataNodeId="139:7049"
     >
-      <h2 className="text-[32px] font-semibold text-[var(--primary)]">Log Activity</h2>
+      <h2 className="text-[length:var(--text-2xl)] font-semibold text-[var(--primary)] sm:text-[length:var(--text-3xl)]">Log Activity</h2>
 
       <div className="mt-6 space-y-4">
         <div className="space-y-2">
@@ -57,7 +57,7 @@ export function LogActivityModal({ open, onOpenChange }: LogActivityModalProps) 
           <select
             value={lead}
             onChange={(event) => setLead(event.target.value)}
-            className="h-10 w-full rounded-xl border border-[var(--border-dark)] bg-[#d3d3d3] px-3 text-sm text-[var(--primary)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
+            className="h-11 w-full rounded-xl border border-[var(--border-dark)] bg-[var(--surface-input)] px-3 text-sm text-[var(--primary)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
           >
             <option value="">Select lead...</option>
             {leadOptions.map((item) => (
@@ -73,7 +73,7 @@ export function LogActivityModal({ open, onOpenChange }: LogActivityModalProps) 
           <select
             value={activityType}
             onChange={(event) => setActivityType(event.target.value)}
-            className="h-10 w-full rounded-xl border border-[var(--border-dark)] bg-[#d3d3d3] px-3 text-sm text-[var(--primary)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
+            className="h-11 w-full rounded-xl border border-[var(--border-dark)] bg-[var(--surface-input)] px-3 text-sm text-[var(--primary)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
           >
             <option value="">Select activity type...</option>
             {activityTypeOptions.map((item) => (
@@ -89,7 +89,7 @@ export function LogActivityModal({ open, onOpenChange }: LogActivityModalProps) 
           <select
             value={outcome}
             onChange={(event) => setOutcome(event.target.value)}
-            className="h-10 w-full rounded-xl border border-[var(--border-dark)] bg-[#d3d3d3] px-3 text-sm text-[var(--primary)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
+            className="h-11 w-full rounded-xl border border-[var(--border-dark)] bg-[var(--surface-input)] px-3 text-sm text-[var(--primary)] focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
           >
             <option value="">Select outcome...</option>
             {outcomeOptions.map((item) => (
@@ -107,16 +107,16 @@ export function LogActivityModal({ open, onOpenChange }: LogActivityModalProps) 
             onChange={(event) => setNotes(event.target.value)}
             placeholder="Add notes about this interaction..."
             rows={3}
-            className="w-full rounded-xl border border-[var(--border-dark)] bg-[#d3d3d3] px-4 py-3 text-base text-[var(--primary)] placeholder:text-black/50 focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
+            className="w-full rounded-xl border border-[var(--border-dark)] bg-[var(--surface-input)] px-4 py-3 text-base text-[var(--primary)] placeholder:text-black/50 focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
           />
         </div>
       </div>
 
-      <div className="mt-4 flex gap-3 pt-4">
+      <div className="mt-4 flex flex-col gap-3 pt-4 sm:flex-row">
         <Button
           type="button"
           variant="outline"
-          className="h-10 flex-1 rounded-xl"
+          className="h-11 flex-1 rounded-xl"
           onClick={handleClose}
         >
           Cancel
@@ -124,7 +124,7 @@ export function LogActivityModal({ open, onOpenChange }: LogActivityModalProps) 
         <Button
           type="button"
           variant="primary"
-          className="h-10 flex-1 rounded-xl"
+          className="h-11 flex-1 rounded-xl"
           onClick={handleSave}
         >
           Save Activity

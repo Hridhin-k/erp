@@ -90,12 +90,12 @@ export function MemberDetailPanel({
         aria-modal="true"
         aria-label="Member Details"
         tabIndex={-1}
-        className="modal-slide-in-right fixed inset-y-0 right-0 z-50 flex w-full max-w-[672px] flex-col bg-white shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]"
+        className="modal-slide-in-right fixed inset-y-0 right-0 z-50 flex w-full flex-col bg-white shadow-[var(--shadow-modal)] sm:max-w-[85vw] md:max-w-[70vw] lg:max-w-[672px]"
         data-node-id="139:2870"
       >
         <div className="flex-1 overflow-y-auto">
           {/* Header */}
-          <div className="flex items-center justify-between px-6 py-6">
+          <div className="flex items-center justify-between px-4 py-4 sm:px-6 sm:py-6">
             <div className="flex items-center gap-4">
               <div className="relative size-16 shrink-0 overflow-hidden rounded-full bg-[#c6c6c6]">
                 <Image
@@ -134,7 +134,7 @@ export function MemberDetailPanel({
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-4 px-6">
+          <div className="grid grid-cols-1 gap-4 px-4 sm:grid-cols-3 sm:px-6">
             <StatCard
               icon={<Phone className="size-4 text-[var(--primary)]" />}
               label="Calls Today"
@@ -153,7 +153,7 @@ export function MemberDetailPanel({
           </div>
 
           {/* Performance Summary */}
-          <div className="mt-6 flex flex-col gap-4 px-6">
+          <div className="mt-6 flex flex-col gap-4 px-4 sm:px-6">
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-semibold uppercase tracking-[1.4px] text-[var(--primary)]">
                 Performance Summary
@@ -204,7 +204,7 @@ export function MemberDetailPanel({
           </div>
 
           {/* Bottom Cards */}
-          <div className="mt-6 grid grid-cols-2 gap-4 px-6 pb-6">
+          <div className="mt-6 grid grid-cols-1 gap-4 px-4 pb-6 sm:grid-cols-2 sm:px-6">
             <div className="flex flex-col gap-2 rounded-2xl border-[0.8px] border-[#a0a9ba] bg-[#bdeafe] p-4">
               <span className="text-xs font-bold uppercase text-[var(--primary)]">
                 Assigned Team
@@ -246,7 +246,7 @@ function StatCard({
           {label}
         </span>
       </div>
-      <p className="text-2xl text-[var(--primary)]">{value}</p>
+      <p className="text-[length:var(--text-xl)] text-[var(--primary)] sm:text-[length:var(--text-2xl)]">{value}</p>
     </div>
   );
 }

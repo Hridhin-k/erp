@@ -82,13 +82,13 @@ export function MembersClientPage({
         userName={user?.name}
       />
 
-      <div className="p-8">
-        <div className="mb-6 flex items-center justify-between">
+      <div className="page-padding">
+        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-[var(--primary)]">
+            <h1 className="text-[length:var(--text-2xl)] font-bold text-[var(--primary)]">
               Members Management
             </h1>
-            <p className="mt-1 text-sm text-[var(--primary-light)]">
+            <p className="mt-1 text-[length:var(--text-sm)] text-[var(--primary-light)]">
               Create and manage sales teams with dedicated team leads
             </p>
           </div>
@@ -102,7 +102,7 @@ export function MembersClientPage({
           />
         </div>
 
-        <div className="mb-6 flex items-center justify-between border-b border-[var(--primary)]">
+        <div className="mb-6 flex flex-col gap-2 border-b border-[var(--primary)] sm:flex-row sm:items-center sm:justify-between">
           <Tabs
             tabs={tabs}
             activeId={activeTab}
@@ -117,9 +117,9 @@ export function MembersClientPage({
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="w-[309px]">Member</TableHead>
+                <TableHead>Member</TableHead>
                 <TableHead>Role</TableHead>
-                <TableHead>Team</TableHead>
+                <TableHead className="hidden sm:table-cell">Team</TableHead>
                 <TableHead className="text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
@@ -154,7 +154,7 @@ export function MembersClientPage({
                       {roleLabels[member.role]}
                     </Badge>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="hidden sm:table-cell">
                     <span className="flex items-center gap-2">
                       <Users className="size-4 text-[var(--muted)]" />
                       {member.team}

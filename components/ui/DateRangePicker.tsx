@@ -98,118 +98,77 @@ export function DateRangePicker({
       tabIndex={-1}
       aria-label="Date range picker"
       className={cn(
-        "fade-in-soft absolute right-0 top-full z-50 mt-2 min-w-0 w-[240px] overflow-hidden rounded-[11.413px] bg-white p-4 shadow-[-1.802px_2.403px_14.657px_-4.205px_rgba(0,0,0,0.09)]",
+        "fade-in-soft fixed inset-x-4 top-16 z-50 overflow-hidden rounded-[var(--radius-md)] bg-white p-4 shadow-lg sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:mt-2 sm:w-[260px]",
         className
       )}
       data-name="DateRangePicker"
       data-node-id="139:2649"
     >
-      {/* Preset buttons - 139:2592 selected, 139:2591 unselected */}
+      {/* Preset buttons */}
       <div className="mb-4 flex gap-2">
-        <Button
-          type="button"
-          variant={preset === "today" ? "primary" : "outline"}
-          size="sm"
-          className={cn(
-            "h-auto min-w-0 rounded-[6.007px] border-[0.601px] border-solid px-3 py-1.5 text-[9.01px] font-medium",
-            preset === "today"
-              ? "border-transparent bg-[#bdeafe] text-[var(--primary)] hover:bg-[#bdeafe]"
-              : "border-[var(--primary)] bg-transparent text-[var(--primary)] hover:bg-[var(--primary)]/5",
-            "transition-[background-color,color,border-color,transform,box-shadow] duration-150 ease-out hover:-translate-y-[1px] hover:shadow-sm"
-          )}
-          onClick={() => handlePresetClick("today")}
-        >
-          Today
-        </Button>
-        <Button
-          type="button"
-          variant={preset === "lastWeek" ? "primary" : "outline"}
-          size="sm"
-          className={cn(
-            "h-auto min-w-0 rounded-[6.007px] border-[0.601px] border-solid px-3 py-1.5 text-[9.01px] font-medium",
-            preset === "lastWeek"
-              ? "border-transparent bg-[#bdeafe] text-[var(--primary)] hover:bg-[#bdeafe]"
-              : "border-[var(--primary)] bg-transparent text-[var(--primary)] hover:bg-[var(--primary)]/5",
-            "transition-[background-color,color,border-color,transform,box-shadow] duration-150 ease-out hover:-translate-y-[1px] hover:shadow-sm"
-          )}
-          onClick={() => handlePresetClick("lastWeek")}
-        >
-          Last Week
-        </Button>
-        <Button
-          type="button"
-          variant={preset === "custom" ? "primary" : "outline"}
-          size="sm"
-          className={cn(
-            "h-auto min-w-0 rounded-[6.007px] border-[0.601px] border-solid px-3 py-1.5 text-[9.01px] font-medium",
-            preset === "custom"
-              ? "border-transparent bg-[#bdeafe] text-[var(--primary)] hover:bg-[#bdeafe]"
-              : "border-[var(--primary)] bg-transparent text-[var(--primary)] hover:bg-[var(--primary)]/5",
-            "transition-[background-color,color,border-color,transform,box-shadow] duration-150 ease-out hover:-translate-y-[1px] hover:shadow-sm"
-          )}
-          onClick={() => setPreset("custom")}
-        >
-          Custom
-        </Button>
+        {(["today", "lastWeek", "custom"] as const).map((p) => (
+          <Button
+            key={p}
+            type="button"
+            variant={preset === p ? "primary" : "outline"}
+            size="sm"
+            className={cn(
+              "h-auto min-w-0 rounded-[var(--radius-sm)] border px-3 py-2 text-[length:var(--text-xs)] font-medium",
+              preset === p
+                ? "border-transparent bg-[#bdeafe] text-[var(--primary)] hover:bg-[#bdeafe]"
+                : "border-[var(--primary)] bg-transparent text-[var(--primary)] hover:bg-[var(--primary)]/5",
+              "transition-[background-color,color,border-color,transform,box-shadow] duration-150 ease-out hover:-translate-y-[1px] hover:shadow-sm"
+            )}
+            onClick={() => p === "custom" ? setPreset("custom") : handlePresetClick(p)}
+          >
+            {p === "today" ? "Today" : p === "lastWeek" ? "Last Week" : "Custom"}
+          </Button>
+        ))}
       </div>
 
-      {/* Divider */}
       <div className="mb-4 border-t border-[var(--border)]" />
 
-      {/* Start Date - 139:2588 input, 139:2599 label style */}
+      {/* Start Date */}
       <div className="mb-3 flex min-w-0 items-center gap-3">
-        <label
-          className="w-20 shrink-0 text-[9.01px] font-medium leading-normal text-[var(--primary)]"
-          data-node-id="139:2599"
-        >
+        <label className="w-20 shrink-0 text-[length:var(--text-xs)] font-medium leading-normal text-[var(--primary)]">
           Start Date
         </label>
-        <div
-          className="relative min-w-0 flex-1"
-          data-node-id="139:2588"
-        >
+        <div className="relative min-w-0 flex-1">
           <input
             type="date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
             onClick={() => setPreset("custom")}
-            className="h-[34px] min-w-0 w-full rounded-[6.007px] border-[0.601px] border-solid border-[var(--primary)] bg-white px-3 pr-8 text-[9.01px] text-[var(--primary)] transition-[background-color,border-color,box-shadow] duration-150 ease-out hover:bg-[var(--primary)]/5 focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
+            className="h-10 min-w-0 w-full rounded-[var(--radius-sm)] border border-[var(--primary)] bg-white px-3 pr-8 text-[length:var(--text-xs)] text-[var(--primary)] transition-[background-color,border-color,box-shadow] duration-150 ease-out hover:bg-[var(--primary)]/5 focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
           />
-          <CalendarIcon className="absolute right-2 top-1/2 size-3.5 -translate-y-1/2 text-[var(--muted)] transition-colors duration-150 ease-out" />
+          <CalendarIcon className="absolute right-2 top-1/2 size-4 -translate-y-1/2 text-[var(--muted)] transition-colors duration-150 ease-out" />
         </div>
       </div>
 
-      {/* End Date - 139:2594 input, 139:2599 label style */}
+      {/* End Date */}
       <div className="mb-5 flex min-w-0 items-center gap-3">
-        <label
-          className="w-20 shrink-0 text-[9.01px] font-medium leading-normal text-[var(--primary)]"
-          data-node-id="139:2599"
-        >
+        <label className="w-20 shrink-0 text-[length:var(--text-xs)] font-medium leading-normal text-[var(--primary)]">
           End Date
         </label>
-        <div
-          className="relative min-w-0 flex-1"
-          data-node-id="139:2594"
-        >
+        <div className="relative min-w-0 flex-1">
           <input
             type="date"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
             onClick={() => setPreset("custom")}
-            className="h-[34px] min-w-0 w-full rounded-[6.007px] border-[0.601px] border-solid border-[var(--primary)] bg-white px-3 pr-8 text-[9.01px] text-[var(--primary)] transition-[background-color,border-color,box-shadow] duration-150 ease-out hover:bg-[var(--primary)]/5 focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
+            className="h-10 min-w-0 w-full rounded-[var(--radius-sm)] border border-[var(--primary)] bg-white px-3 pr-8 text-[length:var(--text-xs)] text-[var(--primary)] transition-[background-color,border-color,box-shadow] duration-150 ease-out hover:bg-[var(--primary)]/5 focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
           />
-          <CalendarIcon className="absolute right-2 top-1/2 size-3.5 -translate-y-1/2 text-[var(--muted)] transition-colors duration-150 ease-out" />
+          <CalendarIcon className="absolute right-2 top-1/2 size-4 -translate-y-1/2 text-[var(--muted)] transition-colors duration-150 ease-out" />
         </div>
       </div>
 
-      {/* Action buttons - 139:2591 Cancel, 139:2593 Apply */}
+      {/* Actions */}
       <div className="flex justify-end gap-2">
         <Button
           type="button"
           variant="outline"
           size="sm"
-          className="h-auto min-w-0 rounded-[6.007px] border-[0.601px] border-solid border-[var(--primary)] bg-transparent px-3 py-1.5 text-[9.01px] font-medium text-[var(--primary)] hover:bg-[var(--primary)]/5"
-          data-node-id="139:2591"
+          className="h-9 min-w-0 rounded-[var(--radius-sm)] border border-[var(--primary)] bg-transparent px-4 text-[length:var(--text-xs)] font-medium text-[var(--primary)] hover:bg-[var(--primary)]/5"
           onClick={() => onOpenChange(false)}
         >
           Cancel
@@ -218,8 +177,7 @@ export function DateRangePicker({
           type="button"
           variant="primary"
           size="sm"
-          className="h-auto min-w-0 rounded-[6.007px] border-0 bg-[var(--primary)] px-3 py-1.5 text-[9.01px] font-medium text-white hover:bg-[var(--primary-light)]"
-          data-node-id="139:2593"
+          className="h-9 min-w-0 rounded-[var(--radius-sm)] border-0 bg-[var(--primary)] px-4 text-[length:var(--text-xs)] font-medium text-white hover:bg-[var(--primary-light)]"
           onClick={handleApply}
         >
           Apply

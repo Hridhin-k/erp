@@ -125,12 +125,12 @@ export function AnalyticsClientPage({
         userName={user?.name}
       />
 
-      <div className="p-8">
-        <div className="mb-8 flex items-center justify-between">
+      <div className="page-padding">
+        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between lg:mb-8">
           {isTeamLead || isSalesAssociate ? (
             <>
               <div>
-                <h1 className="text-2xl font-bold text-[var(--primary)]">
+                <h1 className="text-[length:var(--text-2xl)] font-bold text-[var(--primary)]">
                   Welcome back, {isTeamLead ? "Team Lead" : "Sales Associate"}!
                 </h1>
                 <p className="mt-1 text-sm text-[var(--primary-light)]">
@@ -172,7 +172,7 @@ export function AnalyticsClientPage({
           ) : (
             <>
               <div>
-                <h1 className="text-2xl font-bold text-[var(--primary)]">
+                <h1 className="text-[length:var(--text-2xl)] font-bold text-[var(--primary)]">
                   Analytics & Reports
                 </h1>
                 <p className="mt-1 text-sm text-[var(--primary-light)]">
@@ -191,9 +191,9 @@ export function AnalyticsClientPage({
 
         {isTeamLead ? (
           <>
-            <div className="mb-4 grid grid-cols-1 gap-6 lg:grid-cols-2">
+            <div className="mb-4 grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-6">
               <Card className="border-[var(--border-dark)]">
-                <h3 className="mb-6 text-[30px] font-semibold text-[var(--primary)]">
+                <h3 className="mb-6 text-[length:var(--text-3xl)] font-semibold text-[var(--primary)]">
                   Lead Distribution
                 </h3>
                 <div className="mx-auto h-[260px] max-w-[360px]">
@@ -246,7 +246,7 @@ export function AnalyticsClientPage({
               </Card>
 
               <Card className="border-[var(--border-dark)]">
-                <h3 className="mb-6 text-[30px] font-semibold text-[var(--primary)]">
+                <h3 className="mb-6 text-[length:var(--text-3xl)] font-semibold text-[var(--primary)]">
                   Revenue by Associate
                 </h3>
                 <div className="h-[360px] min-h-[360px] w-full min-w-0">
@@ -280,7 +280,7 @@ export function AnalyticsClientPage({
             </div>
 
             <Card className="border-[var(--border-dark)]">
-              <h3 className="mb-6 text-[30px] font-semibold text-[var(--primary)]">
+              <h3 className="mb-6 text-[length:var(--text-3xl)] font-semibold text-[var(--primary)]">
                 Associate Performance Index
               </h3>
               <Table>
@@ -357,9 +357,9 @@ export function AnalyticsClientPage({
           </>
         ) : isSalesAssociate ? (
           <>
-            <div className="mb-4 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_2fr]">
+            <div className="mb-4 grid grid-cols-1 gap-4 lg:grid-cols-[1fr_2fr] lg:gap-6">
               <Card className="border-[var(--border-dark)]">
-                <h3 className="mb-5 text-[30px] font-semibold text-[var(--primary)]">
+                <h3 className="mb-5 text-[length:var(--text-3xl)] font-semibold text-[var(--primary)]">
                   Pipeline Status
                 </h3>
                 <div className="mx-auto h-[220px] max-w-[260px]">
@@ -398,7 +398,7 @@ export function AnalyticsClientPage({
               </Card>
 
               <Card className="border-[var(--border-dark)]">
-                <h3 className="mb-4 text-[30px] font-semibold text-[var(--primary)]">
+                <h3 className="mb-4 text-[length:var(--text-3xl)] font-semibold text-[var(--primary)]">
                   Weekly Call vs. Conversion Trend
                 </h3>
                 <div className="h-[320px] min-h-[320px] w-full min-w-0">
@@ -441,9 +441,9 @@ export function AnalyticsClientPage({
               </Card>
             </div>
 
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.2fr_1fr]">
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.2fr_1fr] lg:gap-6">
               <Card className="border-[var(--border-dark)]">
-                <h3 className="mb-4 text-[30px] font-semibold text-[var(--primary)]">
+                <h3 className="mb-4 text-[length:var(--text-3xl)] font-semibold text-[var(--primary)]">
                   Package Interest Distribution
                 </h3>
                 <div className="h-[280px] min-h-[280px] w-full min-w-0">
@@ -475,7 +475,7 @@ export function AnalyticsClientPage({
               </Card>
 
               <Card className="border-[var(--border-dark)]">
-                <h3 className="mb-4 text-[30px] font-semibold text-[var(--primary)]">
+                <h3 className="mb-4 text-[length:var(--text-3xl)] font-semibold text-[var(--primary)]">
                   Monthly Target Progress
                 </h3>
                 <div className="space-y-6">
@@ -496,11 +496,11 @@ export function AnalyticsClientPage({
                   <div className="grid grid-cols-2 gap-3">
                     <div className="rounded-xl border border-[var(--border-dark)] p-4">
                       <p className="text-sm text-[var(--primary)]">Efficiency Rate</p>
-                      <p className="mt-1 text-4xl font-medium text-[var(--primary)]">25.0%</p>
+                      <p className="mt-1 text-[length:var(--text-3xl)] font-medium text-[var(--primary)] lg:text-4xl">25.0%</p>
                     </div>
-                    <div className="rounded-xl border border-[var(--border-dark)] p-4">
+                    <div className="rounded-xl border border-[var(--border-dark)] p-3 sm:p-4">
                       <p className="text-sm text-[var(--primary)]">Avg Deal Value</p>
-                      <p className="mt-1 text-4xl font-medium text-[var(--primary)]">$7150</p>
+                      <p className="mt-1 text-[length:var(--text-3xl)] font-medium text-[var(--primary)] lg:text-4xl">$7150</p>
                     </div>
                   </div>
                 </div>
@@ -509,7 +509,7 @@ export function AnalyticsClientPage({
           </>
         ) : (
           <>
-            <div className="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mb-8 lg:grid-cols-4 lg:gap-6">
               {kpiData.map((kpi) => {
                 const Icon = iconMap[kpi.icon];
                 return (
@@ -538,10 +538,10 @@ export function AnalyticsClientPage({
                       </div>
                     </div>
                     <div className="mt-4">
-                      <p className="text-2xl font-bold text-[var(--primary)]">
+                      <p className="text-[length:var(--text-2xl)] font-bold text-[var(--primary)]">
                         {kpi.value}
                       </p>
-                      <p className="mt-1 text-sm font-medium text-[var(--primary)]">
+                      <p className="mt-1 text-[length:var(--text-sm)] font-medium text-[var(--primary)]">
                         {kpi.label}
                       </p>
                     </div>
@@ -550,7 +550,7 @@ export function AnalyticsClientPage({
               })}
             </div>
 
-            <div className="mb-8 grid grid-cols-1 gap-6 lg:grid-cols-[2fr_1fr]">
+            <div className="mb-6 grid grid-cols-1 gap-4 lg:mb-8 lg:grid-cols-[2fr_1fr] lg:gap-6">
               <Card className="border-[var(--border-dark)]">
                 <h3 className="mb-4 text-lg font-semibold text-[var(--primary)]">
                   Performance Timeline
