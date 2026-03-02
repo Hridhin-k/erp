@@ -57,11 +57,11 @@ export function Header({
 
         {/* Center: search (desktop) */}
         {showSearch && (
-          <div className="hidden flex-1 justify-center md:flex">
+          <div className="hidden flex-1 justify-center md:flex md:justify-end ">
             <Input
               leftIcon={<Search className="size-4" />}
               placeholder="Search leads, quotes, customers..."
-              className="max-w-sm lg:max-w-md"
+              className="w-[382px]"
             />
           </div>
         )}
