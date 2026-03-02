@@ -36,7 +36,7 @@ export function TeamCard({
 }: TeamCardProps) {
   return (
     <div
-      className="flex w-full max-w-[353px] flex-col gap-4 rounded-2xl border border-[#a0a9ba] bg-white p-6"
+      className="flex w-full flex-col gap-4 rounded-2xl border border-[#a0a9ba] bg-white p-4 sm:p-6"
       data-name="TeamCard"
     >
       {/* Header */}

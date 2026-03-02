@@ -95,7 +95,7 @@ export function AddMemberModal({
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder="John Doe"
                 required
-                className="h-[42px] w-full rounded-xl border-[0.8px] border-[#a0a9ba] bg-[rgba(198,198,198,0.21)] px-4 text-base text-[var(--primary)] placeholder:text-[var(--primary)]/50 focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
+                className="h-11 w-full rounded-xl border-[0.8px] border-[#a0a9ba] bg-[rgba(198,198,198,0.21)] px-4 text-base text-[var(--primary)] placeholder:text-[var(--primary)]/50 focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
               />
             </div>
 
@@ -114,7 +114,7 @@ export function AddMemberModal({
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="john@holidaypanda.com"
                 required
-                className="h-[42px] w-full rounded-xl border-[0.8px] border-[#a0a9ba] bg-[rgba(198,198,198,0.21)] px-4 text-base text-[var(--primary)] placeholder:text-[var(--primary)]/50 focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
+                className="h-11 w-full rounded-xl border-[0.8px] border-[#a0a9ba] bg-[rgba(198,198,198,0.21)] px-4 text-base text-[var(--primary)] placeholder:text-[var(--primary)]/50 focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
               />
             </div>
 
@@ -130,7 +130,7 @@ export function AddMemberModal({
                     setRoleOpen(!roleOpen);
                     setTeamOpen(false);
                   }}
-                  className="flex h-[42px] w-full items-center justify-between rounded-xl border-[0.8px] border-[#a0a9ba] bg-[rgba(198,198,198,0.21)] px-4 text-base text-[var(--primary)]"
+                  className="flex h-11 w-full items-center justify-between rounded-xl border-[0.8px] border-[#a0a9ba] bg-[rgba(198,198,198,0.21)] px-4 text-base text-[var(--primary)]"
                 >
                   <span className={cn(!selectedRole && "text-[var(--primary)]/50")}>
                     {selectedRole?.label || "Select role"}
@@ -169,7 +169,7 @@ export function AddMemberModal({
                     setTeamOpen(!teamOpen);
                     setRoleOpen(false);
                   }}
-                  className="flex h-[42px] w-full items-center justify-between rounded-xl border-[0.8px] border-[#a0a9ba] bg-[rgba(198,198,198,0.21)] px-4 text-base text-[var(--primary)]"
+                  className="flex h-11 w-full items-center justify-between rounded-xl border-[0.8px] border-[#a0a9ba] bg-[rgba(198,198,198,0.21)] px-4 text-base text-[var(--primary)]"
                 >
                   <span className={cn(!team && "text-[var(--primary)]/50")}>
                     {team || "Select team"}
@@ -212,11 +212,11 @@ export function AddMemberModal({
             </div>
 
             {/* Actions */}
-            <div className="flex gap-3 py-4">
+            <div className="flex flex-col gap-3 py-4 sm:flex-row">
               <Button
                 type="button"
                 variant="outline"
-                className="h-[42px] flex-1 rounded-md"
+                className="h-11 flex-1 rounded-md"
                 onClick={handleClose}
               >
                 Cancel
@@ -224,7 +224,7 @@ export function AddMemberModal({
               <Button
                 type="submit"
                 variant="primary"
-                className="h-10 flex-1 rounded-md"
+                className="h-11 flex-1 rounded-md"
               >
                 Add Member
               </Button>

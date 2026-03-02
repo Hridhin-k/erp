@@ -37,13 +37,13 @@ export function TeamClientPage({ teams }: TeamClientPageProps) {
         userName={user?.name}
       />
 
-      <div className="p-8">
-        <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+      <div className="page-padding">
+        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between lg:mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-[var(--primary)]">
+            <h1 className="text-[length:var(--text-2xl)] font-bold text-[var(--primary)]">
               Teams Management
             </h1>
-            <p className="mt-1 text-sm text-[var(--primary-light)]">
+            <p className="mt-1 text-[length:var(--text-sm)] text-[var(--primary-light)]">
               Create and manage sales teams with dedicated team leads
             </p>
           </div>
@@ -56,7 +56,7 @@ export function TeamClientPage({ teams }: TeamClientPageProps) {
           />
         </div>
 
-        <div className="flex flex-wrap gap-6">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 xl:grid-cols-3">
           {teams.map((team) => (
             <TeamCard
               key={team.name}

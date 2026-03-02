@@ -105,12 +105,12 @@ export function LeadsClientPage({ leads, kpis }: LeadsClientPageProps) {
         userName={user?.name}
       />
 
-      <div className="p-8">
-        <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+      <div className="page-padding">
+        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between lg:mb-8">
           {isTeamLead ? (
             <>
               <div>
-                <h1 className="text-2xl font-bold text-[var(--primary)]">
+                <h1 className="text-[length:var(--text-2xl)] font-bold text-[var(--primary)]">
                   Welcome back, Team Lead!
                 </h1>
                 <p className="mt-1 text-sm text-[var(--primary-light)]">
@@ -165,7 +165,7 @@ export function LeadsClientPage({ leads, kpis }: LeadsClientPageProps) {
           ) : (
             <>
               <div>
-                <h1 className="text-2xl font-bold text-[var(--primary)]">
+                <h1 className="text-[length:var(--text-2xl)] font-bold text-[var(--primary)]">
                   Leads Overview
                 </h1>
                 <p className="mt-1 text-sm text-[var(--primary-light)]">
@@ -186,21 +186,21 @@ export function LeadsClientPage({ leads, kpis }: LeadsClientPageProps) {
           )}
         </div>
 
-        <div className="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:mb-8 lg:grid-cols-4 lg:gap-6 xl:grid-cols-5">
           {kpis.map((kpi) => {
             const Icon = kpiIconMap[kpi.icon];
             return (
               <Card key={kpi.label}>
                 <div className="flex items-start justify-between">
-                  <div className="flex size-12 items-center justify-center rounded-[14px] bg-[var(--accent)]/50">
-                    <Icon className="size-6 text-[var(--primary)]" />
+                  <div className="flex size-10 items-center justify-center rounded-[14px] bg-[var(--accent)]/50 sm:size-12">
+                    <Icon className="size-5 text-[var(--primary)] sm:size-6" />
                   </div>
                 </div>
-                <div className="mt-4">
-                  <p className="text-sm font-medium text-[var(--primary)]">
+                <div className="mt-3 sm:mt-4">
+                  <p className="text-[length:var(--text-sm)] font-medium text-[var(--primary)]">
                     {kpi.label}
                   </p>
-                  <p className="mt-1 text-2xl font-bold text-[var(--primary)]">
+                  <p className="mt-1 text-[length:var(--text-xl)] font-bold text-[var(--primary)] sm:text-[length:var(--text-2xl)]">
                     {kpi.value}
                   </p>
                   <p className={cn("mt-0.5 text-xs", kpi.subtitleColor)}>
@@ -222,13 +222,13 @@ export function LeadsClientPage({ leads, kpis }: LeadsClientPageProps) {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Lead ID</TableHead>
+                  <TableHead className="hidden sm:table-cell">Lead ID</TableHead>
                   <TableHead>Name</TableHead>
-                  <TableHead>Contact</TableHead>
-                  <TableHead>Source</TableHead>
+                  <TableHead className="hidden md:table-cell">Contact</TableHead>
+                  <TableHead className="hidden lg:table-cell">Source</TableHead>
                   <TableHead>Status</TableHead>
-                  <TableHead>Assigned To</TableHead>
-                  <TableHead>Created</TableHead>
+                  <TableHead className="hidden lg:table-cell">Assigned To</TableHead>
+                  <TableHead className="hidden xl:table-cell">Created</TableHead>
                   <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
               </TableHeader>
@@ -237,7 +237,7 @@ export function LeadsClientPage({ leads, kpis }: LeadsClientPageProps) {
                   const SourceIcon = sourceIcons[lead.source] ?? Globe;
                   return (
                     <TableRow key={lead.id}>
-                      <TableCell className="font-medium">{lead.id}</TableCell>
+                      <TableCell className="hidden font-medium sm:table-cell">{lead.id}</TableCell>
                       <TableCell>
                         <div className="flex items-center gap-2">
                           <div className="flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gray-200">
@@ -253,19 +253,19 @@ export function LeadsClientPage({ leads, kpis }: LeadsClientPageProps) {
                           <span>{lead.name}</span>
                         </div>
                       </TableCell>
-                      <TableCell>
+                      <TableCell className="hidden md:table-cell">
                         <div className="flex flex-col gap-0.5">
-                          <span className="flex items-center gap-1.5 text-xs">
+                          <span className="flex items-center gap-1.5 text-[length:var(--text-xs)]">
                             <Phone className="size-3" />
                             {lead.phone}
                           </span>
-                          <span className="flex items-center gap-1.5 text-xs text-[var(--muted)]">
+                          <span className="flex items-center gap-1.5 text-[length:var(--text-xs)] text-[var(--muted)]">
                             <Mail className="size-3" />
                             {lead.email}
                           </span>
                         </div>
                       </TableCell>
-                      <TableCell>
+                      <TableCell className="hidden lg:table-cell">
                         <span className="flex items-center gap-1.5">
                           <SourceIcon className="size-3.5 text-[var(--muted)]" />
                           {lead.source}
@@ -274,8 +274,8 @@ export function LeadsClientPage({ leads, kpis }: LeadsClientPageProps) {
                       <TableCell>
                         <Badge variant={lead.status}>{lead.status}</Badge>
                       </TableCell>
-                      <TableCell>{lead.assignedTo}</TableCell>
-                      <TableCell className="text-[12px] text-[var(--muted)]">
+                      <TableCell className="hidden lg:table-cell">{lead.assignedTo}</TableCell>
+                      <TableCell className="hidden text-[length:var(--text-xs)] text-[var(--muted)] xl:table-cell">
                         {lead.created}
                       </TableCell>
                       <TableCell className="text-right">

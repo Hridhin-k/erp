@@ -61,7 +61,7 @@ export function LoginClientPage() {
           </div>
         </Link>
 
-        <div className="rounded-2xl border border-[var(--border)] bg-white p-8 shadow-xl">
+        <div className="rounded-2xl border border-[var(--border)] bg-white p-5 shadow-xl sm:p-8">
           <h1 className="text-xl font-bold text-[var(--primary)]">
             Sign in to your account
           </h1>
@@ -114,18 +114,14 @@ export function LoginClientPage() {
             </Button>
           </form>
 
-          <p className="mt-6 text-center text-xs text-[var(--muted)]">
-            Demo accounts:{" "}
-            <code className="rounded bg-gray-100 px-1">admin@holidaypanda.com</code>{" "}
-            (Admin) /{" "}
-            <code className="rounded bg-gray-100 px-1">password123</code> or{" "}
-            <code className="rounded bg-gray-100 px-1">teamlead@holidaypanda.com</code>{" "}
-            (Team Lead) /{" "}
-            <code className="rounded bg-gray-100 px-1">password123</code> or{" "}
-            <code className="rounded bg-gray-100 px-1">sales@holidaypanda.com</code>{" "}
-            (Sales Associate) /{" "}
-            <code className="rounded bg-gray-100 px-1">password123</code>
-          </p>
+          <div className="mt-6 text-center text-[length:var(--text-xs)] text-[var(--muted)]">
+            <p className="mb-1 font-medium">Demo accounts (password: <code className="rounded bg-gray-100 px-1">password123</code>)</p>
+            <div className="flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-3">
+              <span><code className="rounded bg-gray-100 px-1">admin@holidaypanda.com</code> (Admin)</span>
+              <span><code className="rounded bg-gray-100 px-1">teamlead@holidaypanda.com</code> (Team Lead)</span>
+              <span><code className="rounded bg-gray-100 px-1">sales@holidaypanda.com</code> (Sales)</span>
+            </div>
+          </div>
         </div>
 
         <p className="mt-6 text-center text-sm text-white/70">

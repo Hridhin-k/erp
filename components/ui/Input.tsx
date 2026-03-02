@@ -11,7 +11,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div
         className={cn(
-          "flex h-10 items-center gap-3 overflow-hidden rounded-[34px] bg-[#ececec] px-4 py-2.5",
+          "flex h-10 items-center gap-3.5 overflow-hidden rounded-[var(--radius-full)] bg-[var(--surface-input)] pl-3.5 pr-4 py-2.5",
           className
         )}
       >
@@ -21,9 +21,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         <input
           type={type}
           ref={ref}
-          className={cn(
-            "flex-1 bg-transparent text-sm text-[var(--primary)] placeholder:text-[var(--muted)] focus:outline-none"
-          )}
+          className="flex-1 bg-transparent text-[length:var(--text-sm)] text-[var(--primary)] placeholder:text-[var(--muted)] focus:outline-none"
           {...props}
         />
       </div>

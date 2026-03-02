@@ -16,7 +16,7 @@ export interface TabsProps {
 
 export function Tabs({ tabs, activeId, onTabChange, className }: TabsProps) {
   return (
-    <nav className={cn("flex gap-0", className)}>
+    <nav className={cn("flex gap-0 overflow-x-auto", className)}>
       {tabs.map((tab) => {
         const isActive = activeId === tab.id;
         return (
@@ -25,7 +25,7 @@ export function Tabs({ tabs, activeId, onTabChange, className }: TabsProps) {
             type="button"
             onClick={() => onTabChange(tab.id)}
             className={cn(
-              "relative px-4 py-2 text-sm transition-[background-color,color,transform] duration-150 ease-out hover:-translate-y-[1px]",
+              "relative whitespace-nowrap px-3 py-2 text-[length:var(--text-sm)] transition-[background-color,color,transform] duration-150 ease-out hover:-translate-y-[1px] sm:px-4",
               isActive
                 ? "font-medium text-[var(--primary)]"
                 : "font-normal text-[var(--primary)] hover:bg-[var(--primary)]/5"

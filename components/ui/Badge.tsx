@@ -25,13 +25,13 @@ function Badge({
   const variants: Record<string, string> = {
     default: "bg-[var(--primary)] text-white",
     success: "bg-[var(--success)] text-white",
-    notification: "bg-[#ff5151] text-white",
-    new: "bg-[#7bd6fd] text-[var(--primary)]",
-    assigned: "bg-[#ffb74d] text-[var(--primary)]",
-    interested: "bg-[#41e363] text-[var(--primary)]",
-    "follow-up": "bg-[#ffcc80] text-[var(--primary)]",
-    "not-interested": "bg-[#ffcdd2] text-[var(--primary)]",
-    "team-lead": "bg-[#FFBF69] text-[var(--primary)]",
+    notification: "bg-[var(--danger)] text-white",
+    new: "bg-[var(--status-new)] text-[var(--primary)]",
+    assigned: "bg-[var(--status-assigned)] text-[var(--primary)]",
+    interested: "bg-[var(--status-interested)] text-[var(--primary)]",
+    "follow-up": "bg-[var(--status-follow-up)] text-[var(--primary)]",
+    "not-interested": "bg-[var(--status-not-interested)] text-[var(--primary)]",
+    "team-lead": "bg-[var(--warning)] text-[var(--primary)]",
     associate: "bg-[#FFC0CB] text-[var(--primary)]",
   };
 
@@ -51,7 +51,7 @@ function Badge({
   return (
     <span
       className={cn(
-        "inline-flex items-center justify-center rounded-full px-2 py-0.5 text-xs font-medium",
+        "inline-flex items-center justify-center rounded-[var(--radius-full)] px-2 py-0.5 text-[length:var(--text-xs)] font-medium",
         variants[variant],
         className
       )}

@@ -115,26 +115,26 @@ export function NotificationsPanel({
       tabIndex={-1}
       aria-label="Recent activities"
       className={cn(
-        "fade-in-soft absolute right-0 top-full z-50 mt-2 w-[400px] overflow-hidden rounded-[14px] border-[1.067px] border-solid border-[#e5e7eb] bg-white pb-[1.067px] pt-[25.067px] shadow-[0px_1px_3px_0px_rgba(0,0,0,0.1),0px_1px_2px_0px_rgba(0,0,0,0.1)]",
+        "fade-in-soft fixed inset-x-4 top-16 z-50 overflow-hidden rounded-[var(--radius-md)] border border-[#e5e7eb] bg-white pt-5 shadow-lg sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:mt-2 sm:w-[400px]",
         className
       )}
       data-name="Notifications"
       data-node-id="139:188"
     >
       {/* Header */}
-      <div className="flex h-[48px] shrink-0 items-center justify-between px-[25.067px]">
+      <div className="flex shrink-0 items-center justify-between px-5 pb-3 sm:px-6">
         <div>
-          <h3 className="text-base font-semibold leading-6 text-[var(--primary)]" data-node-id="139:192">
+          <h3 className="text-[length:var(--text-base)] font-semibold leading-6 text-[var(--primary)]" data-node-id="139:192">
             Recent Activities
           </h3>
-          <p className="text-sm font-medium leading-5 text-[var(--primary-light)]" data-node-id="139:194">
+          <p className="text-[length:var(--text-sm)] font-medium leading-5 text-[var(--primary-light)]" data-node-id="139:194">
             Real-time updates from your team
           </p>
         </div>
         <button
           type="button"
           onClick={() => onOpenChange(false)}
-          className="flex size-9 shrink-0 items-center justify-center rounded-[10px] bg-[#fae9e9] transition-colors hover:bg-[#f5d5d5]"
+          className="flex size-9 shrink-0 items-center justify-center rounded-[var(--radius-sm)] bg-[#fae9e9] transition-colors hover:bg-[#f5d5d5]"
           aria-label="Close notifications"
           data-node-id="139:195"
         >
@@ -143,14 +143,14 @@ export function NotificationsPanel({
       </div>
 
       {/* Activity list */}
-      <div className="flex max-h-[464px] flex-col gap-4 overflow-y-auto px-[25.067px] pb-6 pt-6">
+      <div className="flex max-h-[min(464px,60vh)] flex-col gap-4 overflow-y-auto px-5 pb-6 pt-3 sm:px-6">
         {activities.map((activity) => {
           const { cardBg, iconBg, Icon } = variantStyles[activity.variant];
           return (
             <div
               key={activity.id}
               className={cn(
-                "flex gap-4 rounded-[10px] px-4 pt-4 pb-4 transition-[background-color,transform] duration-150 ease-out hover:translate-x-[1px]",
+                "flex gap-3 rounded-[var(--radius-sm)] p-3 transition-[background-color,transform] duration-150 ease-out hover:translate-x-[1px] sm:gap-4 sm:p-4",
                 cardBg
               )}
             >
@@ -168,16 +168,16 @@ export function NotificationsPanel({
                 />
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-base leading-6 text-[var(--primary)]">
+                <p className="text-[length:var(--text-sm)] leading-5 text-[var(--primary)] sm:text-[length:var(--text-base)] sm:leading-6">
                   <span className="font-semibold">{activity.userName}</span>{" "}
                   <span className="font-normal text-[var(--primary-light)]">
                     {activity.action}
                   </span>
                 </p>
-                <p className="text-base font-medium leading-6 text-[var(--primary)]">
+                <p className="text-[length:var(--text-sm)] font-medium leading-5 text-[var(--primary)]">
                   Lead: {activity.leadName}
                 </p>
-                <p className="text-sm font-medium leading-5 text-[var(--primary)]">
+                <p className="text-[length:var(--text-xs)] font-medium leading-5 text-[var(--primary)] sm:text-[length:var(--text-sm)]">
                   {activity.timeAgo}
                 </p>
               </div>

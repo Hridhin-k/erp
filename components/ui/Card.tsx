@@ -8,7 +8,7 @@ function Card({ className, children, ...props }: CardProps) {
   return (
     <div
       className={cn(
-        "rounded-2xl border border-[var(--border)] bg-white p-6 shadow-[5px_4px_20px_0px_rgba(0,0,0,0.1)] transition-[box-shadow,transform,border-color] duration-200 ease-out hover:-translate-y-[1px] hover:shadow-[8px_10px_24px_0px_rgba(0,0,0,0.12)]",
+        "rounded-[var(--radius-lg)] border border-[var(--border)] bg-white p-4 shadow-[var(--shadow-card)] transition-[box-shadow,transform,border-color] duration-200 ease-out hover:-translate-y-[1px] hover:shadow-[var(--shadow-card-hover)] sm:p-6",
         className
       )}
       {...props}
@@ -25,7 +25,7 @@ function CardHeader({ className, ...props }: React.HTMLAttributes<HTMLDivElement
 function CardTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h3
-      className={cn("text-lg font-semibold text-[var(--primary)]", className)}
+      className={cn("text-[length:var(--text-lg)] font-semibold text-[var(--primary)]", className)}
       {...props}
     />
   );

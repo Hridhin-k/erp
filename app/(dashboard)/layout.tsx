@@ -1,5 +1,6 @@
 import { Sidebar } from "@/components/layout/Sidebar";
 import { AuthGuard } from "@/components/AuthGuard";
+import { SidebarProvider } from "@/contexts/SidebarContext";
 
 export default function DashboardLayout({
   children,
@@ -8,10 +9,14 @@ export default function DashboardLayout({
 }) {
   return (
     <AuthGuard>
-      <div className="min-h-screen bg-white">
-        <Sidebar />
-        <main className="ml-[267px] min-h-screen">{children}</main>
-      </div>
+      <SidebarProvider>
+        <div className="min-h-screen bg-white">
+          <Sidebar />
+          <main className="min-h-screen lg:ml-[var(--sidebar-width)]">
+            {children}
+          </main>
+        </div>
+      </SidebarProvider>
     </AuthGuard>
   );
 }

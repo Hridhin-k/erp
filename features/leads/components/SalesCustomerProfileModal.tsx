@@ -75,20 +75,20 @@ export function SalesCustomerProfileModal({
       onOpenChange={onOpenChange}
       ariaLabel="Customer Profile"
       wrapperClassName="bg-black/60 p-4"
-      className="flex h-[92vh] max-w-[760px] flex-col overflow-hidden border border-[var(--border-dark)] bg-white"
+      className="flex h-full max-h-screen flex-col overflow-hidden border border-[var(--border-dark)] bg-white sm:h-[92vh] sm:max-w-[85vw] md:max-w-[70vw] lg:max-w-[760px]"
       dataNodeId="150:483"
     >
-          <div className="flex items-center justify-between border-b border-[var(--border-dark)] px-6 py-4">
-            <div className="flex items-center gap-3">
+          <div className="flex items-center justify-between border-b border-[var(--border-dark)] px-4 py-3 sm:px-6 sm:py-4">
+            <div className="flex items-center gap-2 sm:gap-3">
               <button
                 type="button"
                 onClick={handleClose}
-                className="flex size-6 items-center justify-center rounded-full bg-[#fae9e9] text-red-500"
+                className="flex size-9 items-center justify-center rounded-full bg-[#fae9e9] text-red-500"
                 aria-label="Close"
               >
                 <X className="size-4" />
               </button>
-              <h2 className="text-2xl font-semibold text-[var(--primary)]">
+              <h2 className="text-[length:var(--text-xl)] font-semibold text-[var(--primary)] sm:text-[length:var(--text-2xl)]">
                 {isEditing ? "Editing Profile" : "Customer Profile"}
               </h2>
             </div>
@@ -205,8 +205,8 @@ export function SalesCustomerProfileModal({
                   </div>
                 ) : (
                   <>
-                    <div className="mt-4 flex items-center gap-2">
-                      <h3 className="text-[32px] font-semibold text-[var(--primary)]">{displayLead.name}</h3>
+                    <div className="mt-4 flex flex-wrap items-center gap-2">
+                      <h3 className="text-[length:var(--text-2xl)] font-semibold text-[var(--primary)] sm:text-[length:var(--text-3xl)]">{displayLead.name}</h3>
                       <span className="rounded-full bg-[rgba(255,221,158,0.79)] px-2 py-0.5 text-[10px] font-bold uppercase text-[#6e5307]">
                         Bronze
                       </span>
@@ -248,7 +248,7 @@ export function SalesCustomerProfileModal({
                     ))}
                   </div>
                 ) : (
-                  <div className="mt-4 grid w-full grid-cols-4 gap-4 text-center">
+                  <div className="mt-4 grid w-full grid-cols-2 gap-3 text-center sm:grid-cols-4 sm:gap-4">
                     <div><p className="text-[10px] font-bold uppercase text-[var(--muted)]">Source</p><p className="text-sm text-[var(--accent)]">{displayLead.source}</p></div>
                     <div><p className="text-[10px] font-bold uppercase text-[var(--muted)]">Status</p><p className="text-sm text-[var(--success)]">{displayLead.status}</p></div>
                     <div><p className="text-[10px] font-bold uppercase text-[var(--muted)]">Tier</p><p className="text-sm text-[#6e5307]">Bronze</p></div>
@@ -312,19 +312,19 @@ export function SalesCustomerProfileModal({
                 <span className="flex items-center gap-1 text-xs text-[var(--primary)]"><Crown className="size-3.5" /> VIP Client</span>
               </div>
               <div className="space-y-2">
-                <div className="flex items-center justify-between rounded-xl border border-[var(--border-dark)] bg-white p-3">
+                <div className="flex flex-col gap-2 rounded-xl border border-[var(--border-dark)] bg-white p-3 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="flex size-8 items-center justify-center rounded-full bg-[var(--accent)]/30"><Globe className="size-4 text-[var(--primary)]" /></span>
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[var(--accent)]/30"><Globe className="size-4 text-[var(--primary)]" /></span>
                     <div><p className="text-sm font-medium text-[var(--primary)]">Swiss Alps Luxury Tour</p><p className="flex gap-3 text-[10px] text-[var(--muted)]"><span className="flex items-center gap-1"><Calendar className="size-3" />Oct 2023</span><span className="flex items-center gap-1"><User className="size-3" />4 Pax</span></p></div>
                   </div>
-                  <div className="text-right"><p className="text-sm font-semibold text-[var(--primary)]">$4,500</p><p className="text-[10px] text-[var(--muted)]">PAID VIA CARD</p></div>
+                  <div className="pl-10 sm:pl-0 sm:text-right"><p className="text-sm font-semibold text-[var(--primary)]">$4,500</p><p className="text-[10px] text-[var(--muted)]">PAID VIA CARD</p></div>
                 </div>
-                <div className="flex items-center justify-between rounded-xl border border-[var(--border-dark)] bg-white p-3">
+                <div className="flex flex-col gap-2 rounded-xl border border-[var(--border-dark)] bg-white p-3 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="flex size-8 items-center justify-center rounded-full bg-[var(--accent)]/30"><Globe className="size-4 text-[var(--primary)]" /></span>
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[var(--accent)]/30"><Globe className="size-4 text-[var(--primary)]" /></span>
                     <div><p className="text-sm font-medium text-[var(--primary)]">Bali Beach Retreat</p><p className="flex gap-3 text-[10px] text-[var(--muted)]"><span className="flex items-center gap-1"><Calendar className="size-3" />Jun 2023</span><span className="flex items-center gap-1"><User className="size-3" />2 Pax</span></p></div>
                   </div>
-                  <div className="text-right"><p className="text-sm font-semibold text-[var(--primary)]">$3,200</p><p className="text-[10px] text-[var(--muted)]">PAID VIA CARD</p></div>
+                  <div className="pl-10 sm:pl-0 sm:text-right"><p className="text-sm font-semibold text-[var(--primary)]">$3,200</p><p className="text-[10px] text-[var(--muted)]">PAID VIA CARD</p></div>
                 </div>
               </div>
             </div>

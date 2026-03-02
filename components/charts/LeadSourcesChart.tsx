@@ -61,7 +61,7 @@ export function LeadSourcesChart({
           </ResponsiveContainer>
         </div>
 
-        <div className="grid w-full max-w-[289px] grid-cols-2 gap-x-8 gap-y-4">
+        <div className="grid w-full max-w-[289px] grid-cols-2 gap-x-4 gap-y-3 sm:gap-x-8 sm:gap-y-4">
           {data.map((item) => (
             <div key={item.name} className="flex items-center gap-2">
               <div

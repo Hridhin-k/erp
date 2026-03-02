@@ -74,11 +74,11 @@ export function LeadDetailPanel({
         aria-modal="true"
         aria-label="Lead Details"
         tabIndex={-1}
-        className="modal-slide-in-right fixed inset-y-0 right-0 z-50 flex w-full max-w-[672px] flex-col bg-[#f8fafc] shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]"
+        className="modal-slide-in-right fixed inset-y-0 right-0 z-50 flex w-full flex-col bg-[#f8fafc] shadow-[var(--shadow-modal)] sm:max-w-[85vw] md:max-w-[70vw] lg:max-w-[672px]"
         data-node-id="139:3019"
       >
       {/* Header - 139:3020 / 139:3287 */}
-      <div className="flex h-[86px] shrink-0 items-center justify-between border-b border-[var(--primary)] bg-white px-6">
+      <div className="flex shrink-0 items-center justify-between border-b border-[var(--primary)] bg-white px-4 py-4 sm:px-6">
         <div className="flex items-center gap-4">
           <button
             type="button"
@@ -126,9 +126,9 @@ export function LeadDetailPanel({
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-y-auto p-6">
+      <div className="flex-1 overflow-y-auto p-4 sm:p-6">
         {/* Profile card - 139:3032 */}
-        <div className="mb-6 rounded-[24px] border-[0.8px] border-[var(--border-dark)] bg-white p-8 shadow-sm">
+        <div className="mb-6 rounded-[var(--radius-xl)] border-[0.8px] border-[var(--border-dark)] bg-white p-4 shadow-sm sm:p-8">
           <div className="flex flex-col items-center gap-4">
             <div className="relative">
               <div className="flex size-24 items-center justify-center rounded-2xl bg-gray-200 text-3xl font-bold text-[var(--primary)]">
@@ -138,10 +138,10 @@ export function LeadDetailPanel({
             </div>
             <div className="flex flex-col items-center gap-2">
               <div className="flex items-center gap-2">
-                <h3 className="text-2xl font-bold text-[var(--primary)]">
+                <h3 className="text-[length:var(--text-xl)] font-bold text-[var(--primary)] sm:text-[length:var(--text-2xl)]">
                   {displayLead.name}
                 </h3>
-                <span className="rounded-full bg-[rgba(255,221,158,0.79)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#6e5307]">
+                <span className="rounded-full bg-[rgba(255,221,158,0.79)] px-2 py-0.5 text-[length:var(--text-xs)] font-bold uppercase tracking-wider text-[#6e5307]">
                   Bronze
                 </span>
               </div>
@@ -163,29 +163,29 @@ export function LeadDetailPanel({
             <div className="flex gap-3">
               <Button
                 variant="primary"
-                className="h-[63px] flex-1 rounded-[16px] py-3"
+                className="h-14 flex-1 rounded-[16px] py-3 sm:h-[63px]"
               >
                 <div className="flex flex-col items-center gap-1">
                   <Phone className="size-5 text-[#bdeafe]" />
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#bdeafe]">
+                  <span className="text-[length:var(--text-xs)] font-bold uppercase tracking-wider text-[#bdeafe]">
                     Call
                   </span>
                 </div>
               </Button>
               <Button
                 variant="primary"
-                className="h-[63px] flex-1 rounded-[16px] py-3"
+                className="h-14 flex-1 rounded-[16px] py-3 sm:h-[63px]"
               >
                 <div className="flex flex-col items-center gap-1">
                   <MessageCircle className="size-5 text-[#bdeafe]" />
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#bdeafe]">
+                  <span className="text-[length:var(--text-xs)] font-bold uppercase tracking-wider text-[#bdeafe]">
                     WhatsApp
                   </span>
                 </div>
               </Button>
               <Button
                 variant="primary"
-                className="h-[63px] flex-1 rounded-[16px] py-3"
+                className="h-14 flex-1 rounded-[16px] py-3 sm:h-[63px]"
               >
                 <div className="flex flex-col items-center gap-1">
                   <Mail className="size-5 text-[#bdeafe]" />
@@ -322,9 +322,9 @@ export function LeadDetailPanel({
             </span>
           </div>
           <div className="space-y-3">
-            <div className="flex items-center justify-between rounded-xl border border-[var(--border-dark)] bg-gray-50/50 p-4">
+            <div className="flex flex-col gap-2 rounded-xl border border-[var(--border-dark)] bg-gray-50/50 p-3 sm:flex-row sm:items-center sm:justify-between sm:p-4">
               <div className="flex items-center gap-3">
-                <Globe className="size-5 text-[var(--accent)]" />
+                <Globe className="size-5 shrink-0 text-[var(--accent)]" />
                 <div>
                   <p className="font-medium text-[var(--primary)]">
                     Swiss Alps Luxury Tour
@@ -339,14 +339,14 @@ export function LeadDetailPanel({
                   </div>
                 </div>
               </div>
-              <div className="text-right">
+              <div className="pl-8 sm:pl-0 sm:text-right">
                 <p className="font-bold text-[var(--primary)]">$4,500</p>
                 <p className="text-xs text-[var(--muted)]">PAID VIA CARD</p>
               </div>
             </div>
-            <div className="flex items-center justify-between rounded-xl border border-[var(--border-dark)] bg-gray-50/50 p-4">
+            <div className="flex flex-col gap-2 rounded-xl border border-[var(--border-dark)] bg-gray-50/50 p-3 sm:flex-row sm:items-center sm:justify-between sm:p-4">
               <div className="flex items-center gap-3">
-                <Globe className="size-5 text-[var(--accent)]" />
+                <Globe className="size-5 shrink-0 text-[var(--accent)]" />
                 <div>
                   <p className="font-medium text-[var(--primary)]">
                     Bali Beach Retreat
@@ -361,7 +361,7 @@ export function LeadDetailPanel({
                   </div>
                 </div>
               </div>
-              <div className="text-right">
+              <div className="pl-8 sm:pl-0 sm:text-right">
                 <p className="font-bold text-[var(--primary)]">$3,200</p>
                 <p className="text-xs text-[var(--muted)]">PAID VIA CARD</p>
               </div>

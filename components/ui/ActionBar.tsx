@@ -65,11 +65,12 @@ export function ActionBar({
     ((open: boolean) => setFilterOpenInternal(open));
 
   return (
-    <div className="flex flex-wrap items-center gap-3">
+    <div className="flex flex-wrap items-center gap-2 sm:gap-3">
       <Button
         variant={todayActive ? "primary" : "secondary"}
         size="md"
         onClick={onTodayClick}
+        className="text-[length:var(--text-xs)] sm:text-[length:var(--text-sm)]"
       >
         {todayLabel}
       </Button>
@@ -114,8 +115,10 @@ export function ActionBar({
         size="md"
         leftIcon={<Download className="size-4" />}
         onClick={onExportClick}
+        className="text-[length:var(--text-xs)] sm:text-[length:var(--text-sm)]"
       >
-        Export Report
+        <span className="hidden sm:inline">Export Report</span>
+        <span className="sm:hidden">Export</span>
       </Button>
       {showAdd && (
         <Button
@@ -123,6 +126,7 @@ export function ActionBar({
           size="md"
           leftIcon={<Plus className="size-4" />}
           onClick={onAddClick}
+          className="text-[length:var(--text-xs)] sm:text-[length:var(--text-sm)]"
         >
           {addLabel}
         </Button>

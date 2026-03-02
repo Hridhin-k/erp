@@ -282,13 +282,13 @@ export function DashboardClientPage({
         userName={displayName}
       />
 
-      <div className="p-8">
-        <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+      <div className="page-padding">
+        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between lg:mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-[var(--primary)]">
+            <h1 className="text-[length:var(--text-2xl)] font-bold text-[var(--primary)]">
               Welcome back, {displayName}!
             </h1>
-            <p className="mt-1 text-sm text-[var(--primary-light)]">
+            <p className="mt-1 text-[length:var(--text-sm)] text-[var(--primary-light)]">
               Here&apos;s your team&apos;s performance overview for today
             </p>
           </div>
@@ -406,7 +406,7 @@ export function DashboardClientPage({
 
         {isTeamLead ? (
           <>
-            <div className="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mb-8 lg:grid-cols-4 lg:gap-6">
               {teamLeadKpis.map((kpi) => {
                 const Icon = kpi.icon;
                 return (
@@ -423,14 +423,14 @@ export function DashboardClientPage({
                       ) : null}
                     </div>
                     <div className="mt-4">
-                      <p className="text-4xl font-medium text-[var(--primary)]">
+                      <p className="text-[length:var(--text-3xl)] font-medium text-[var(--primary)] lg:text-4xl">
                         {kpi.value}
                       </p>
-                      <p className="mt-1 text-sm text-[var(--primary)]">
+                      <p className="mt-1 text-[length:var(--text-sm)] text-[var(--primary)]">
                         {kpi.label}
                       </p>
                       {kpi.progress ? (
-                        <div className="mt-3 max-w-[190px]">
+                        <div className="mt-3 max-w-full sm:max-w-[190px]">
                           <Progress value={kpi.progress} />
                         </div>
                       ) : null}
@@ -453,7 +453,7 @@ export function DashboardClientPage({
                   </h3>
                   <span className="text-sm text-[var(--primary)]">Today</span>
                 </div>
-                <div className="h-[250px] min-h-[250px] w-full min-w-0">
+                <div className="h-[200px] min-h-[200px] w-full min-w-0 sm:h-[250px] sm:min-h-[250px]">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={teamForecastData}>
                       <CartesianGrid
@@ -546,7 +546,7 @@ export function DashboardClientPage({
           </>
         ) : isSalesAssociate ? (
           <>
-            <div className="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mb-8 lg:grid-cols-4 lg:gap-6">
               {salesAssociateKpis.map((kpi) => {
                 const Icon = kpi.icon;
                 return (
@@ -555,10 +555,10 @@ export function DashboardClientPage({
                       <Icon className="size-5 text-[var(--primary)]" />
                     </div>
                     <div className="mt-4">
-                      <p className="text-4xl font-medium text-[var(--primary)]">
+                      <p className="text-[length:var(--text-3xl)] font-medium text-[var(--primary)] lg:text-4xl">
                         {kpi.value}
                       </p>
-                      <p className="mt-1 text-sm text-[var(--primary)]">
+                      <p className="mt-1 text-[length:var(--text-sm)] text-[var(--primary)]">
                         {kpi.label}
                       </p>
                     </div>
@@ -574,13 +574,13 @@ export function DashboardClientPage({
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Lead ID</TableHead>
+                    <TableHead className="hidden sm:table-cell">Lead ID</TableHead>
                     <TableHead>Name</TableHead>
-                    <TableHead>Contact</TableHead>
-                    <TableHead>Source</TableHead>
+                    <TableHead className="hidden md:table-cell">Contact</TableHead>
+                    <TableHead className="hidden lg:table-cell">Source</TableHead>
                     <TableHead>Status</TableHead>
-                    <TableHead>Assigned To</TableHead>
-                    <TableHead>Created</TableHead>
+                    <TableHead className="hidden lg:table-cell">Assigned To</TableHead>
+                    <TableHead className="hidden xl:table-cell">Created</TableHead>
                     <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -589,21 +589,21 @@ export function DashboardClientPage({
                     const SourceIcon = sourceIconMap[row.source];
                     return (
                       <TableRow key={row.id}>
-                        <TableCell className="font-medium">{row.id}</TableCell>
+                        <TableCell className="hidden font-medium sm:table-cell">{row.id}</TableCell>
                         <TableCell>{row.name}</TableCell>
-                        <TableCell>
+                        <TableCell className="hidden md:table-cell">
                           <div className="flex flex-col gap-0.5">
-                            <span className="flex items-center gap-1.5 text-xs">
+                            <span className="flex items-center gap-1.5 text-[length:var(--text-xs)]">
                               <Phone className="size-3 text-[var(--success)]" />
                               {row.phone}
                             </span>
-                            <span className="flex items-center gap-1.5 text-xs text-[var(--muted)]">
+                            <span className="flex items-center gap-1.5 text-[length:var(--text-xs)] text-[var(--muted)]">
                               <Mail className="size-3" />
                               {row.email}
                             </span>
                           </div>
                         </TableCell>
-                        <TableCell>
+                        <TableCell className="hidden lg:table-cell">
                           <span className="flex items-center gap-2">
                             <span className="flex size-6 items-center justify-center rounded-full bg-[var(--accent)]/40">
                               <SourceIcon className="size-3 text-[var(--primary)]" />
@@ -614,8 +614,8 @@ export function DashboardClientPage({
                         <TableCell>
                           <Badge variant={row.status}>{row.status}</Badge>
                         </TableCell>
-                        <TableCell>{row.assignedTo}</TableCell>
-                        <TableCell className="text-xs text-[var(--muted)]">
+                        <TableCell className="hidden lg:table-cell">{row.assignedTo}</TableCell>
+                        <TableCell className="hidden text-[length:var(--text-xs)] text-[var(--muted)] xl:table-cell">
                           {row.created}
                         </TableCell>
                         <TableCell className="text-right">
@@ -630,7 +630,7 @@ export function DashboardClientPage({
                             </Button>
                             <button
                               type="button"
-                              className="inline-flex size-8 items-center justify-center rounded-md text-[var(--primary)] transition-colors hover:bg-[var(--accent)]/20"
+                              className="inline-flex size-9 items-center justify-center rounded-md text-[var(--primary)] transition-colors hover:bg-[var(--accent)]/20"
                               aria-label="More lead actions"
                             >
                               <MoreVertical className="size-4" />
@@ -646,7 +646,7 @@ export function DashboardClientPage({
           </>
         ) : (
           <>
-            <div className="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mb-8 lg:grid-cols-4 lg:gap-6">
               {kpiData.map((kpi) => {
                 const Icon = iconMap[kpi.icon];
                 return (
@@ -664,7 +664,7 @@ export function DashboardClientPage({
                       <p className="text-sm font-medium text-[var(--primary)]">
                         {kpi.label}
                       </p>
-                      <p className="mt-1 text-2xl font-bold text-[var(--primary)]">
+                      <p className="mt-1 text-[length:var(--text-2xl)] font-bold text-[var(--primary)]">
                         {kpi.value}
                       </p>
                     </div>
@@ -673,12 +673,12 @@ export function DashboardClientPage({
               })}
             </div>
 
-            <div className="mb-8 grid grid-cols-1 gap-6 lg:grid-cols-[2fr_1fr]">
+            <div className="mb-6 grid grid-cols-1 gap-4 lg:mb-8 lg:grid-cols-[2fr_1fr] lg:gap-6">
               <Card className="border-[var(--border-dark)]">
                 <h3 className="mb-6 text-lg font-semibold text-[var(--primary)]">
                   Revenue Forecast
                 </h3>
-                <div className="h-[280px] min-h-[280px] w-full min-w-0">
+                <div className="h-[220px] min-h-[220px] w-full min-w-0 sm:h-[280px] sm:min-h-[280px]">
                   <ResponsiveContainer width="100%" height="100%">
                     <AreaChart data={revenueData}>
                       <defs>
@@ -758,7 +758,7 @@ export function DashboardClientPage({
                       </TableCell>
                       <TableCell>{row.interested}</TableCell>
                       <TableCell>
-                        <div className="max-w-[200px]">
+                        <div className="max-w-full sm:max-w-[200px]">
                           <Progress value={row.conversion} />
                         </div>
                       </TableCell>

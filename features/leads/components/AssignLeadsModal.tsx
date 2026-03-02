@@ -86,24 +86,24 @@ export function AssignLeadsModal({ open, onOpenChange }: AssignLeadsModalProps) 
       open={open}
       onOpenChange={onOpenChange}
       ariaLabel="Assign Leads to Team Members"
-      className="max-w-[768px] rounded-2xl border border-[#a0a9ba] bg-white p-6 shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]"
+      className="max-w-full rounded-2xl border border-[#a0a9ba] bg-white p-4 shadow-[var(--shadow-modal)] sm:max-w-[85vw] sm:p-6 md:max-w-[70vw] lg:max-w-[768px]"
       dataNodeId="139:4881"
     >
-      <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-[28px] font-medium text-[var(--primary)]">
+      <div className="mb-4 flex items-start justify-between gap-3">
+        <h2 className="text-[length:var(--text-xl)] font-medium text-[var(--primary)] sm:text-[length:var(--text-2xl)]">
           Assign Leads to Team Members ({titleCount})
         </h2>
         <button
           type="button"
           onClick={() => onOpenChange(false)}
-          className="rounded p-1 text-red-500 hover:bg-red-50"
+          className="flex size-9 shrink-0 items-center justify-center rounded-lg text-red-500 hover:bg-red-50"
           aria-label="Close assign leads panel"
         >
           <X className="size-5" />
         </button>
       </div>
 
-      <div className="max-h-[740px] space-y-3 overflow-y-auto pr-1">
+      <div className="max-h-[calc(100vh-180px)] space-y-3 overflow-y-auto pr-1 sm:max-h-[min(740px,calc(100vh-200px))]">
         {defaultPendingLeads.map((lead) => (
           <div
             key={lead.id}
@@ -124,14 +124,14 @@ export function AssignLeadsModal({ open, onOpenChange }: AssignLeadsModalProps) 
               </p>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
               <select
                 value={assignments[lead.id] ?? ""}
                 onChange={(e) =>
                   setAssignments((prev) => ({ ...prev, [lead.id]: e.target.value }))
                 }
                 className={cn(
-                  "h-[38px] flex-1 rounded-xl border border-[#a0a9ba] bg-[#d3d3d3] px-3 text-sm text-[var(--primary)]",
+                  "h-11 w-full rounded-xl border border-[#a0a9ba] bg-[var(--surface-input)] px-3 text-sm text-[var(--primary)] sm:flex-1",
                   "focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"
                 )}
               >
@@ -146,7 +146,7 @@ export function AssignLeadsModal({ open, onOpenChange }: AssignLeadsModalProps) 
                 type="button"
                 variant="primary"
                 size="sm"
-                className="h-[38px] rounded-xl px-5"
+                className="h-11 shrink-0 rounded-xl px-5"
                 onClick={() => {
                   const selected = assignments[lead.id];
                   if (!selected) return;

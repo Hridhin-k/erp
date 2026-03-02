@@ -2,9 +2,9 @@ import { cn } from "@/lib/utils";
 
 function Table({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) {
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto -mx-4 sm:mx-0">
       <table
-        className={cn("w-full border-collapse text-left", className)}
+        className={cn("w-full border-collapse text-left text-[length:var(--text-sm)]", className)}
         {...props}
       />
     </div>
@@ -32,7 +32,7 @@ function TableRow({
   return (
     <tr
       className={cn(
-        "border-b border-[rgba(12,35,79,0.5)] transition-colors duration-150 ease-out hover:bg-[var(--accent)]/10",
+        "border-b border-[var(--border-light)] transition-colors duration-150 ease-out hover:bg-[var(--accent)]/10",
         className
       )}
       {...props}
@@ -49,7 +49,7 @@ function TableHead({
     <th
       scope={scope}
       className={cn(
-        "border-b border-[var(--primary)] px-3 py-2.5 text-xs font-bold text-[var(--primary)]",
+        "border-b border-[var(--primary)] px-2 py-2 text-[length:var(--text-xs)] font-bold text-[var(--primary)] sm:px-3 sm:py-2.5",
         className
       )}
       {...props}
@@ -63,7 +63,10 @@ function TableCell({
 }: React.TdHTMLAttributes<HTMLTableCellElement>) {
   return (
     <td
-      className={cn("px-3 py-3 text-[13px] text-[var(--primary)]", className)}
+      className={cn(
+        "px-2 py-2 text-[length:var(--text-sm)] text-[var(--primary)] sm:px-3 sm:py-3",
+        className
+      )}
       {...props}
     />
   );
